@@ -1,31 +1,32 @@
-using Toybox.System as Sys;
-using Toybox.Activity as Act;
-using Toybox.WatchUi as Ui;
-using Toybox.Graphics as Gfx;
-using Toybox.Lang as Lang;
+import Toybox.System;
+import Toybox.Activity;
+import Toybox.WatchUi;
+import Toybox.Graphics;
+import Toybox.Lang;
+import Toybox.Time;
 
 import Settings;
 import UiPopup;
 import LayoutUtils;
 
-class PowerCadenceView extends Ui.SimpleDataField {    
+//https://developer.garmin.com/connect-iq/api-docs/
+
+class PowerCadenceView extends WatchUi.DataField {    
     var lastAlert = 0.0;
     var cadenceLowStart = null;
 
     // popup state
     var popupUntil = 0.0;
     var popupText = null;
-    var popupBg = Gfx.COLOR_RED;
-    var popupFg = Gfx.COLOR_WHITE;
+    var popupBg = Graphics.COLOR_RED;
+    var popupFg = Graphics.COLOR_WHITE;
 
-    // Set the label of the data field here.
     function initialize() {
-        SimpleDataField.initialize();
-        label = "SmartCadence";
-    }    
+        DataField.initialize();
+    }   
 
-    function onUpdate(dc as Gfx.Dc) {
-        var info = Act.getActivityInfo();
+    function onUpdate(dc as Graphics.Dc) {
+        var info = Activity.getActivityInfo();
         if (info == null) {return;}
 
         var power = info.currentPower;
@@ -39,51 +40,56 @@ class PowerCadenceView extends Ui.SimpleDataField {
 
         // Track time with low cadence
         if (cad != null && cad < cT) {
-            if (cadenceLowStart == null) {cadenceLowStart = Sys.getTimer();}
+            if (cadenceLowStart == null) {cadenceLowStart = System.getTimer();}
         } else {
             cadenceLowStart = null;
         }
 
-        var color = Gfx.COLOR_GREEN;
+        var color = Graphics.COLOR_GREEN;
         var bottom = "";
 
         if (power == null) {power = 0;}
         if (cad == null) {cad = 0;}
 
-        var top = power + " W";
+        var top = cad + " rpm";
 
         if (cadenceLowStart != null) {
-            var elapsed = Sys.getTimer() - cadenceLowStart;
-            bottom = "Cad " + cad + " rpm • " + Lang.format("%ds", [elapsed.toNumber().toNumber()]) + " < " + cT + " rpm";
-            color = (power > pT && elapsed >= dur) ? Gfx.COLOR_RED : Gfx.COLOR_ORANGE;
+            var elapsed = System.getTimer() - cadenceLowStart;
+            color = (power > pT && elapsed >= dur) ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
 
-            if (power > pT && elapsed >= dur) {
-                if (Sys.getTimer() - lastAlert >= rpt) {
-                    _alert(aT, "Low cadence at high power");
-                    lastAlert = Sys.getTimer();
-                }
-            }
-        } else {
-            bottom = "Cad " + cad + " rpm • Thr " + cT + " rpm";
+            // if (power > pT && elapsed >= dur) {
+            //     if (System.getTimer() - lastAlert >= rpt) {
+            //         _alert(aT, "Low cadence at high power");
+            //         lastAlert = System.getTimer();
+            //     }
+            // }
         }
 
-        // LayoutUtils.drawTwoLineCenter(dc, top, bottom, color);
+        bottom = power + " W • Thr " + pT + " W • Thr " + cT + " rpm";
+
+        LayoutUtils.drawTwoLineCenter(dc, top, bottom, color);
 
         // draw popup if active
-        if (Sys.getTimer() < popupUntil && popupText != null) {
+        if (System.getTimer() < popupUntil && popupText != null) {
             UiPopup.drawPopup(dc, popupText, popupBg, popupFg);
         }
+
+        // View.findDrawableById("Background").setColor(getBackgroundColor());
+        // var value = View.findDrawableById("value");
+        // value.setColor(Graphics.COLOR_BLACK);
+        // value.setText(cad.format("%.2f"));
+        // View.onUpdate(dc);
     }
 
     function _alert(aT, message) {
         // if (aT == 0 || aT == 2) {Sys.playTone(Sys.Tone.TONE_ALERT);}
         if (aT == 1 || aT == 2) {
             popupText = message;
-            popupBg = Gfx.COLOR_RED;
+            popupBg = Graphics.COLOR_RED;
 
-            popupFg = Gfx.COLOR_WHITE;
-            popupUntil = Sys.getTimer() + 3; // show 3s
-            Ui.requestUpdate();
+            popupFg = Graphics.COLOR_WHITE;
+            popupUntil = System.getTimer() + 3; // show 3s
+            WatchUi.requestUpdate();
         }
     }
 }
