@@ -4,6 +4,7 @@ import Toybox.WatchUi;
 import Toybox.Graphics;
 import Toybox.Lang;
 import Toybox.Time;
+using Toybox.Attention;
 
 import Settings;
 import UiPopup;
@@ -57,32 +58,26 @@ class PowerCadenceView extends WatchUi.DataField {
             var elapsed = System.getTimer() - cadenceLowStart;
             color = (power > pT && elapsed >= dur) ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
 
-            // if (power > pT && elapsed >= dur) {
-            //     if (System.getTimer() - lastAlert >= rpt) {
-            //         _alert(aT, "Low cadence at high power");
-            //         lastAlert = System.getTimer();
-            //     }
-            // }
+            if (power > pT && elapsed >= dur) {
+                if (System.getTimer() - lastAlert >= rpt) {
+                    _alert(aT, "Low cadence at high power");
+                    lastAlert = System.getTimer();
+                }
+            }
         }
 
         bottom = power + " W • Thr " + pT + " W • Thr " + cT + " rpm";
 
         LayoutUtils.drawTwoLineCenter(dc, top, bottom, color);
 
-        // draw popup if active
-        if (System.getTimer() < popupUntil && popupText != null) {
-            UiPopup.drawPopup(dc, popupText, popupBg, popupFg);
-        }
-
-        // View.findDrawableById("Background").setColor(getBackgroundColor());
-        // var value = View.findDrawableById("value");
-        // value.setColor(Graphics.COLOR_BLACK);
-        // value.setText(cad.format("%.2f"));
-        // View.onUpdate(dc);
+        // // draw popup if active
+        // if (System.getTimer() < popupUntil && popupText != null) {
+        //     UiPopup.drawPopup(dc, popupText, popupBg, popupFg);
+        // }
     }
-
+    
     function _alert(aT, message) {
-        // if (aT == 0 || aT == 2) {Sys.playTone(Sys.Tone.TONE_ALERT);}
+        if (aT == 0 || aT == 2) {Attention.playTone(Attention.TONE_FAILURE);}
         if (aT == 1 || aT == 2) {
             popupText = message;
             popupBg = Graphics.COLOR_RED;
