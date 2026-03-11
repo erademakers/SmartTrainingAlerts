@@ -1,0 +1,27 @@
+<settings>
+  <setting propertyKey="@Properties.pc_power"   title="@Strings.pc_power_title">
+    <settingConfig type="numeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.pc_cadence" title="@Strings.pc_cadence_title">
+    <settingConfig type="numeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.pc_duration" title="@Strings.pc_duration_title">
+    <settingConfig type="numeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.pc_repeat"   title="@Strings.pc_repeat_title">
+    <settingConfig type="numeric" />
+  </setting>
+
+  <!-- ALERT type als list met numerieke values -->
+  <setting propertyKey="@Properties.pc_alert" title="@Strings.pc_alert_title" prompt="@Strings.pc_alert_prompt">
+    <settingConfig type="list">
+      <listEntry value="0">@Strings.pc_alert_tone</listEntry>
+      <listEntry value="1">@Strings.pc_alert_gui</listEntry>
+      <listEntry value="2">@Strings.pc_alert_both</listEntry>
+      <listEntry value="3">@Strings.pc_alert_off</listEntry>
+    </settingConfig>
+  </setting>
+</settings>

@@ -1,0 +1,28 @@
+{
+  "folders": [
+    {
+      "path": "PowerCadence"
+    },
+    {
+      "path": "HeartRate"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/bin": true
+    },
+    "extensions.ignoreRecommendations": false,
+    "extensions.recommendations": [
+      "garmin.monkey-c"
+    ],
+    "ROS2.distro": "humble",
+    "python.autoComplete.extraPaths": [
+      "/opt/ros/humble/lib/python3.10/site-packages",
+      "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+      "/opt/ros/humble/lib/python3.10/site-packages",
+      "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+  }
+}
