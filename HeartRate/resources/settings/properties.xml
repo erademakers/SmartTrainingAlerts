@@ -1,6 +1,6 @@
 <properties>
     <property id="hr_zone4_interval_max_time"   type="number">900</property>
-    <property id="hr_zone5_interval_max_time"   type="number">240</property>
+    <property id="hr_zone5_interval_max_time"   type="number">60</property>
 
     <property id="hr_zone4_reset_ref_zone_max"  type="number">2</property>
     <property id="hr_zone5_reset_ref_zone_max"  type="number">2</property>

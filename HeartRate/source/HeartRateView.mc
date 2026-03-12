@@ -25,6 +25,7 @@ class HeartRateView extends Ui.DataField {
     var lastZone = 0;
     var zone4RecoveryAccum = 0.0;
     var zone5RecoveryAccum = 0.0;
+    var sessionInitialized = false;
 
     // popup state
     var popupUntil = 0.0;
@@ -47,6 +48,29 @@ class HeartRateView extends Ui.DataField {
 
     function initialize() {
         Ui.DataField.initialize();
+    }
+
+    function resetSessionState() {
+        lastAlert1 = 0.0;
+        lastAlert2 = 0.0;
+        lastAlert3 = 0.0;
+        lastAlert4 = 0.0;
+        lastAlert5 = 0.0;
+
+        zoneTotal1 = 0.0;
+        zoneTotal2 = 0.0;
+        zoneTotal3 = 0.0;
+        zoneTotal4 = 0.0;
+        zoneTotal5 = 0.0;
+
+        zoneInterval4 = 0.0;
+        zoneInterval5 = 0.0;
+
+        lastSampleTime = 0.0;
+        lastZone = 0;
+        zone4RecoveryAccum = 0.0;
+        zone5RecoveryAccum = 0.0;
+        zoneMaxLogged = false;
     }
 
     function getZone(hr) {
@@ -195,7 +219,7 @@ class HeartRateView extends Ui.DataField {
         debugLog("[HeartRate] Max settings: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s");
     }
 
-    function logRuntimeStatus(now, hr, zone, elapsed) {
+    function logRuntimeStatus(now, hr, zone, elapsed, intervalExceeded, cumulativeExceeded) {
         var z1 = Settings.getNumber("hr_zone1_max_time", 18000);
         var z2 = Settings.getNumber("hr_zone2_max_time", 18000);
         var z3 = Settings.getNumber("hr_zone3_max_time", 300);
@@ -225,6 +249,7 @@ class HeartRateView extends Ui.DataField {
             " | Zone=" + zone.format("%d") +
             " | Cum: Z1=" + t1s + "s, Z2=" + t2s + "s, Z3=" + t3s + "s, Z4=" + t4s + "s, Z5=" + t5s + "s" +
             " | Int: Z4=" + i4s + "s/" + z4IntMax + "s, Z5=" + i5s + "s/" + z5IntMax + "s" +
+            " | Exceeded: int=" + intervalExceeded + ", max=" + cumulativeExceeded +
             " | Rec: Z4 ref=" + z4Ref + " min=" + z4Min + "s ratio=" + z4Ratio + "% acc=" + r4s + "s, Z5 ref=" + z5Ref + " min=" + z5Min + "s ratio=" + z5Ratio + "% acc=" + r5s + "s" +
             " | Max: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s"
         );
@@ -239,6 +264,11 @@ class HeartRateView extends Ui.DataField {
         var hr = info.currentHeartRate;
         if (hr == null) {
             return;
+        }
+
+        if (!sessionInitialized) {
+            resetSessionState();
+            sessionInitialized = true;
         }
 
         if (!zoneMaxLogged) {
@@ -270,8 +300,6 @@ class HeartRateView extends Ui.DataField {
 
         var elapsed = getZoneTotal(zone);
 
-        logRuntimeStatus(now, hr, zone, elapsed);
-
         // settings
         var maxT = Settings.getNumber("hr_zone"+zone+"_max_time", zone<=2?18000:300);
         var intMaxT = (zone == 4)
@@ -289,11 +317,13 @@ class HeartRateView extends Ui.DataField {
         // Use red only for actual limit exceedance, not immediately on entering high zones.
         var color = ZoneColors.colorForZone(zone);
         if (zone >= 4 && !intervalExceeded && !cumulativeExceeded) {
-            color = Gfx.COLOR_ORANGE;
+            color = Gfx.COLOR_YELLOW;
         }
         if (intervalExceeded || cumulativeExceeded) {
             color = Gfx.COLOR_RED;
         }
+
+        logRuntimeStatus(now, hr, zone, elapsed, intervalExceeded, cumulativeExceeded);
 
         if (alertOn && (intervalExceeded || cumulativeExceeded) && (now - getLastAlert(zone)) >= (rpt * 1000)) {
             var msg = "Zone " + zone + " limit";
