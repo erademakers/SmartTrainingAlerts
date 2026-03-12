@@ -10,39 +10,39 @@
       <listEntry value="3">Zone 3 or lower</listEntry>
     </settingConfig>
   </setting>
-  <setting propertyKey="@Properties.hr_zone4_5_reset_min_ref_sec" title="Min recovery time (s)">
+  <setting propertyKey="@Properties.hr_zone4_5_reset_min_ref_time" title="Min recovery time (s)">
     <settingConfig type="numeric" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone1_max" title="Zone 1 max time (s)">
+  <setting propertyKey="@Properties.hr_zone1_max_time" title="Zone 1 max time (s)">
     <settingConfig type="numeric" />
   </setting>
   <setting propertyKey="@Properties.hr_zone1_alert" title="Zone 1 alerts on">
     <settingConfig type="boolean" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone2_max" title="Zone 2 max time (s)">
+  <setting propertyKey="@Properties.hr_zone2_max_time" title="Zone 2 max time (s)">
     <settingConfig type="numeric" />
   </setting>
   <setting propertyKey="@Properties.hr_zone2_alert" title="Zone 2 alerts on">
     <settingConfig type="boolean" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone3_max" title="Zone 3 max time (s)">
+  <setting propertyKey="@Properties.hr_zone3_max_time" title="Zone 3 max time (s)">
     <settingConfig type="numeric" />
   </setting>
   <setting propertyKey="@Properties.hr_zone3_alert" title="Zone 3 alerts on">
     <settingConfig type="boolean" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_max" title="Zone 4 max time (s)">
+  <setting propertyKey="@Properties.hr_zone4_max_time" title="Zone 4 max time (s)">
     <settingConfig type="numeric" />
   </setting>
   <setting propertyKey="@Properties.hr_zone4_alert" title="Zone 4 alerts on">
     <settingConfig type="boolean" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone5_max" title="Zone 5 max time (s)">
+  <setting propertyKey="@Properties.hr_zone5_max_time" title="Zone 5 max time (s)">
     <settingConfig type="numeric" />
   </setting>
   <setting propertyKey="@Properties.hr_zone5_alert" title="Zone 5 alerts on">

@@ -23,6 +23,17 @@ class PowerCadenceView extends WatchUi.DataField {
     var popupFg = Graphics.COLOR_WHITE;
     var fCadenceTop = null;
 
+    (:debuglog)
+    function debugLogImpl(msg) {
+        System.println(msg);
+    }
+
+    function debugLog(msg) {
+        if (self has :debugLogImpl) {
+            debugLogImpl(msg);
+        }
+    }
+
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
         fCadenceTop = View.findDrawableById("cadenceTop") as Text;
@@ -88,7 +99,7 @@ class PowerCadenceView extends WatchUi.DataField {
             fCadenceTop.setText(top);
         }
 
-        System.println("[PowerCadence] " + bottom);
+        debugLog("[PowerCadence] " + bottom);
 
         View.onUpdate(dc);
 

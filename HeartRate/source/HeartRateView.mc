@@ -33,6 +33,17 @@ class HeartRateView extends Ui.DataField {
     var fZoneBottom = null;
     var zoneMaxLogged = false;
 
+    (:debuglog)
+    function debugLogImpl(msg) {
+        Sys.println(msg);
+    }
+
+    function debugLog(msg) {
+        if (self has :debugLogImpl) {
+            debugLogImpl(msg);
+        }
+    }
+
     function onLayout(dc as Gfx.Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
         fZoneTop = Ui.View.findDrawableById("zoneTop") as Ui.Text;
@@ -104,7 +115,7 @@ class HeartRateView extends Ui.DataField {
                 lastAlert4 = 0.0;
                 lastAlert5 = 0.0;
                 recoveryResetArmed = true;
-                Sys.println("[HeartRate] Recovery reset: Z4/Z5 cumulative timers reset after " + recoveryRefAccumSec.format("%d") + "s in ref zone <= " + refZoneMax + ".");
+                debugLog("[HeartRate] Recovery reset: Z4/Z5 cumulative timers reset after " + recoveryRefAccumSec.format("%d") + "s in ref zone <= " + refZoneMax + ".");
             }
             return;
         }
@@ -115,23 +126,23 @@ class HeartRateView extends Ui.DataField {
     }
 
     function logZoneMaxSettings() {
-        var z1 = Settings.getNumber("hr_zone1_max", 18000);
-        var z2 = Settings.getNumber("hr_zone2_max", 18000);
-        var z3 = Settings.getNumber("hr_zone3_max", 300);
-        var z4 = Settings.getNumber("hr_zone4_max", 300);
-        var z5 = Settings.getNumber("hr_zone5_max", 300);
-        Sys.println("[HeartRate] Max settings: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s");
+        var z1 = Settings.getNumber("hr_zone1_max_time", 18000);
+        var z2 = Settings.getNumber("hr_zone2_max_time", 18000);
+        var z3 = Settings.getNumber("hr_zone3_max_time", 300);
+        var z4 = Settings.getNumber("hr_zone4_max_time", 300);
+        var z5 = Settings.getNumber("hr_zone5_max_time", 300);
+        debugLog("[HeartRate] Max settings: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s");
     }
 
     function logRuntimeStatus(now, hr, zone, elapsed) {
-        var z1 = Settings.getNumber("hr_zone1_max", 18000);
-        var z2 = Settings.getNumber("hr_zone2_max", 18000);
-        var z3 = Settings.getNumber("hr_zone3_max", 300);
-        var z4 = Settings.getNumber("hr_zone4_max", 300);
-        var z5 = Settings.getNumber("hr_zone5_max", 300);
+        var z1 = Settings.getNumber("hr_zone1_max_time", 18000);
+        var z2 = Settings.getNumber("hr_zone2_max_time", 18000);
+        var z3 = Settings.getNumber("hr_zone3_max_time", 300);
+        var z4 = Settings.getNumber("hr_zone4_max_time", 300);
+        var z5 = Settings.getNumber("hr_zone5_max_time", 300);
         var resetEnabled = Settings.getBool("hr_zone4_5_reset_enabled", true);
         var resetRef = Settings.getNumber("hr_zone4_5_reset_ref_zone_max", 2);
-        var resetMin = Settings.getNumber("hr_zone4_5_reset_min_ref_sec", 120);
+        var resetMin = Settings.getNumber("hr_zone4_5_reset_min_ref_time", 120);
 
         var t1s = zoneTotal1.format("%d");
         var t2s = zoneTotal2.format("%d");
@@ -139,7 +150,7 @@ class HeartRateView extends Ui.DataField {
         var t4s = zoneTotal4.format("%d");
         var t5s = zoneTotal5.format("%d");
 
-        Sys.println(
+        debugLog(
             "[HeartRate] HR=" + hr +
             " | Zone=" + zone.format("%d") +
             " | Cum: Z1=" + t1s + "s, Z2=" + t2s + "s, Z3=" + t3s + "s, Z4=" + t4s + "s, Z5=" + t5s + "s" +
@@ -167,7 +178,7 @@ class HeartRateView extends Ui.DataField {
         var zone = getZone(hr);
         var resetEnabled = Settings.getBool("hr_zone4_5_reset_enabled", true);
         var resetRefZone = Settings.getNumber("hr_zone4_5_reset_ref_zone_max", 2);
-        var resetMinRecovery = Settings.getNumber("hr_zone4_5_reset_min_ref_sec", 120);
+        var resetMinRecovery = Settings.getNumber("hr_zone4_5_reset_min_ref_time", 120);
 
         // Cumulative zone timing over full ride.
         if (lastSampleTime > 0.0 && lastZone >= 1) {
@@ -186,7 +197,7 @@ class HeartRateView extends Ui.DataField {
         logRuntimeStatus(now, hr, zone, elapsed);
 
         // settings
-        var maxT = Settings.getNumber("hr_zone"+zone+"_max", zone<=2?18000:300);
+        var maxT = Settings.getNumber("hr_zone"+zone+"_max_time", zone<=2?18000:300);
         var rpt  = 30;
         var alertOn = Settings.getBool("hr_zone"+zone+"_alert", true);
 
