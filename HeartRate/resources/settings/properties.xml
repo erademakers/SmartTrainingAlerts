@@ -2,8 +2,8 @@
     <property id="hr_zone4_interval_max_time"   type="number">900</property>
     <property id="hr_zone5_interval_max_time"   type="number">240</property>
 
-    <property id="hr_zone4_reset_ref_zone_max"  type="number">12</property>
-    <property id="hr_zone5_reset_ref_zone_max"  type="number">12</property>
+    <property id="hr_zone4_reset_ref_zone_max"  type="number">2</property>
+    <property id="hr_zone5_reset_ref_zone_max"  type="number">2</property>
 
     <property id="hr_zone4_reset_min_ref_time"  type="number">300</property>
     <property id="hr_zone4_reset_recovery_ratio_pct" type="number">50</property>

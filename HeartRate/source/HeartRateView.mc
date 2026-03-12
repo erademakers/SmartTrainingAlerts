@@ -282,12 +282,19 @@ class HeartRateView extends Ui.DataField {
         var rpt  = 30;
         var alertOn = Settings.getBool("hr_zone"+zone+"_alert", true);
 
-        // color by zone
-        var color = ZoneColors.colorForZone(zone);
-
         // alert when exceeding max time in zone
         var intervalExceeded = (zone >= 4) && (getZoneInterval(zone) >= intMaxT);
         var cumulativeExceeded = elapsed >= maxT;
+
+        // Use red only for actual limit exceedance, not immediately on entering high zones.
+        var color = ZoneColors.colorForZone(zone);
+        if (zone >= 4 && !intervalExceeded && !cumulativeExceeded) {
+            color = Gfx.COLOR_ORANGE;
+        }
+        if (intervalExceeded || cumulativeExceeded) {
+            color = Gfx.COLOR_RED;
+        }
+
         if (alertOn && (intervalExceeded || cumulativeExceeded) && (now - getLastAlert(zone)) >= (rpt * 1000)) {
             var msg = "Zone " + zone + " limit";
             if (intervalExceeded && cumulativeExceeded) {
