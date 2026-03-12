@@ -20,6 +20,9 @@ class HeartRateView extends Ui.DataField {
     var zoneTotal4 = 0.0;
     var zoneTotal5 = 0.0;
     var lastSampleTime = 0.0;
+    var lastZone = 0;
+    var recoveryRefAccumSec = 0.0;
+    var recoveryResetArmed = false;
 
     // popup state
     var popupUntil = 0.0;
@@ -28,6 +31,7 @@ class HeartRateView extends Ui.DataField {
     var popupFg = Gfx.COLOR_WHITE;
     var fZoneTop = null;
     var fZoneBottom = null;
+    var zoneMaxLogged = false;
 
     function onLayout(dc as Gfx.Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
@@ -81,6 +85,69 @@ class HeartRateView extends Ui.DataField {
         lastAlert5 = value;
     }
 
+    function isRecoveryReferenceZone(zone, refZoneMax) {
+        return zone <= refZoneMax;
+    }
+
+    function applyHighZoneReset(delta, activeZone, enabled, refZoneMax, minRecoverySec) {
+        if (!enabled) {
+            recoveryRefAccumSec = 0.0;
+            recoveryResetArmed = false;
+            return;
+        }
+
+        if (isRecoveryReferenceZone(activeZone, refZoneMax)) {
+            recoveryRefAccumSec += delta;
+            if (!recoveryResetArmed && recoveryRefAccumSec >= minRecoverySec) {
+                zoneTotal4 = 0.0;
+                zoneTotal5 = 0.0;
+                lastAlert4 = 0.0;
+                lastAlert5 = 0.0;
+                recoveryResetArmed = true;
+                Sys.println("[HeartRate] Recovery reset: Z4/Z5 cumulative timers reset after " + recoveryRefAccumSec.format("%d") + "s in ref zone <= " + refZoneMax + ".");
+            }
+            return;
+        }
+
+        // Left recovery zone: require a new recovery block before next reset.
+        recoveryRefAccumSec = 0.0;
+        recoveryResetArmed = false;
+    }
+
+    function logZoneMaxSettings() {
+        var z1 = Settings.getNumber("hr_zone1_max", 18000);
+        var z2 = Settings.getNumber("hr_zone2_max", 18000);
+        var z3 = Settings.getNumber("hr_zone3_max", 300);
+        var z4 = Settings.getNumber("hr_zone4_max", 300);
+        var z5 = Settings.getNumber("hr_zone5_max", 300);
+        Sys.println("[HeartRate] Max settings: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s");
+    }
+
+    function logRuntimeStatus(now, hr, zone, elapsed) {
+        var z1 = Settings.getNumber("hr_zone1_max", 18000);
+        var z2 = Settings.getNumber("hr_zone2_max", 18000);
+        var z3 = Settings.getNumber("hr_zone3_max", 300);
+        var z4 = Settings.getNumber("hr_zone4_max", 300);
+        var z5 = Settings.getNumber("hr_zone5_max", 300);
+        var resetEnabled = Settings.getBool("hr_zone4_5_reset_enabled", true);
+        var resetRef = Settings.getNumber("hr_zone4_5_reset_ref_zone_max", 2);
+        var resetMin = Settings.getNumber("hr_zone4_5_reset_min_ref_sec", 120);
+
+        var t1s = zoneTotal1.format("%d");
+        var t2s = zoneTotal2.format("%d");
+        var t3s = zoneTotal3.format("%d");
+        var t4s = zoneTotal4.format("%d");
+        var t5s = zoneTotal5.format("%d");
+
+        Sys.println(
+            "[HeartRate] HR=" + hr +
+            " | Zone=" + zone.format("%d") +
+            " | Cum: Z1=" + t1s + "s, Z2=" + t2s + "s, Z3=" + t3s + "s, Z4=" + t4s + "s, Z5=" + t5s + "s" +
+            " | Reset(Z4/Z5): on=" + resetEnabled + ", ref<=" + resetRef + ", min=" + resetMin + "s, acc=" + recoveryRefAccumSec.format("%d") + "s" +
+            " | Max: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s"
+        );
+    }
+
     function onUpdate(dc as Gfx.Dc) {
         var now = Sys.getTimer();
         var info = Act.getActivityInfo();
@@ -92,18 +159,31 @@ class HeartRateView extends Ui.DataField {
             return;
         }
 
+        if (!zoneMaxLogged) {
+            logZoneMaxSettings();
+            zoneMaxLogged = true;
+        }
+
         var zone = getZone(hr);
+        var resetEnabled = Settings.getBool("hr_zone4_5_reset_enabled", true);
+        var resetRefZone = Settings.getNumber("hr_zone4_5_reset_ref_zone_max", 2);
+        var resetMinRecovery = Settings.getNumber("hr_zone4_5_reset_min_ref_sec", 120);
 
         // Cumulative zone timing over full ride.
-        if (lastSampleTime > 0.0) {
-            var delta = (now - lastSampleTime).toNumber();
+        if (lastSampleTime > 0.0 && lastZone >= 1) {
+            var delta = (now - lastSampleTime).toNumber() / 1000.0;
             if (delta > 0) {
-                addZoneTotal(zone, delta);
+                // Attribute elapsed interval to the previously sampled zone.
+                addZoneTotal(lastZone, delta);
+                applyHighZoneReset(delta, lastZone, resetEnabled, resetRefZone, resetMinRecovery);
             }
         }
         lastSampleTime = now;
+        lastZone = zone;
 
         var elapsed = getZoneTotal(zone);
+
+        logRuntimeStatus(now, hr, zone, elapsed);
 
         // settings
         var maxT = Settings.getNumber("hr_zone"+zone+"_max", zone<=2?18000:300);
@@ -114,7 +194,7 @@ class HeartRateView extends Ui.DataField {
         var color = ZoneColors.colorForZone(zone);
 
         // alert when exceeding max time in zone
-        if (alertOn && elapsed >= maxT && (now - getLastAlert(zone)) >= rpt) {
+        if (alertOn && elapsed >= maxT && (now - getLastAlert(zone)) >= (rpt * 1000)) {
             var msg = "Zone " + zone + " max " + maxT + "s";
             _alert(msg, color);
             setLastAlert(zone, now);

@@ -1,4 +1,8 @@
 <properties>
+    <property id="hr_zone4_5_reset_enabled"       type="boolean">true</property>
+    <property id="hr_zone4_5_reset_ref_zone_max"  type="number">2</property>
+    <property id="hr_zone4_5_reset_min_ref_sec"   type="number">120</property>
+
     <property id="hr_zone1_max"     type="number">18000</property>
     <property id="hr_zone1_alert"   type="boolean">true</property>
 
