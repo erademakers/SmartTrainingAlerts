@@ -317,9 +317,12 @@ class HeartRateView extends Ui.DataField {
         // Use red only for actual limit exceedance, not immediately on entering high zones.
         var color = ZoneColors.colorForZone(zone);
         if (zone >= 4 && !intervalExceeded && !cumulativeExceeded) {
-            color = Gfx.COLOR_YELLOW;
+            color = Gfx.COLOR_GREEN;
         }
-        if (intervalExceeded || cumulativeExceeded) {
+        if (intervalExceeded && !cumulativeExceeded) {
+            color = Gfx.COLOR_ORANGE;
+        }
+        if (cumulativeExceeded) {
             color = Gfx.COLOR_RED;
         }
 
