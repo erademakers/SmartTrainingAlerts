@@ -2,8 +2,6 @@
     <property id="pc_power"    type="number">100</property>
     <property id="pc_cadence"  type="number">100</property>
     <property id="pc_duration" type="number">1</property>
-    <property id="pc_repeat"   type="number">30</property>
 
-    <!-- ALERT als nummer (0=tone,1=gui,2=both,3=off) -->
-    <property id="pc_alert"    type="number">2</property>
+    <property id="pc_alert"    type="boolean">true</property>
 </properties>

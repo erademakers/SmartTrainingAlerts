@@ -8,7 +8,6 @@ using Toybox.Attention;
 import Toybox.Notifications;
 
 import Settings;
-import UiPopup;
 
 //https://developer.garmin.com/connect-iq/api-docs/
 
@@ -43,8 +42,7 @@ class PowerCadenceView extends WatchUi.DataField {
         var pT  = Settings.getNumber("pc_power", 300);
         var cT  = Settings.getNumber("pc_cadence", 70);
         var dur = Settings.getNumber("pc_duration", 5);
-        // var rpt = Settings.getNumber("pc_repeat", 30);
-        var aT  = Settings.getNumber("pc_alert", 2);
+        var alertEnabled = Settings.getBool("pc_alert", true);
 
         // Track time with low cadence
         if (cad != null && cad < cT) {
@@ -66,19 +64,19 @@ class PowerCadenceView extends WatchUi.DataField {
             color = (power > pT && elapsed >= dur) ? Graphics.COLOR_RED : Graphics.COLOR_ORANGE;
             if (power > pT && elapsed >= dur) {
                 if (!alertActive) {
-                    _alert(aT, "Low cadence at high power");
+                    _alert(alertEnabled, "Low cadence at high power");
                     lastAlert = System.getTimer();
                     alertActive = true;
                 }
             } else {
                 if (alertActive) {
-                    _alertEnd(aT, "Cadence OK");
+                    _alertEnd(alertEnabled, "Cadence OK");
                     alertActive = false;
                 }
             }
         } else {
             if (alertActive) {
-                _alertEnd(aT, "Cadence OK");
+                _alertEnd(alertEnabled, "Cadence OK");
                 alertActive = false;
             }
         }
@@ -100,16 +98,16 @@ class PowerCadenceView extends WatchUi.DataField {
         // }
     }
 
-    function _alert(aT, message) {
-        if (aT == 0 || aT == 2) {Attention.playTone(Attention.TONE_ALARM);}
-        // if (aT == 1 || aT == 2) {
+    function _alert(alertEnabled, message) {
+        if (alertEnabled) {Attention.playTone(Attention.TONE_ALARM);}
+        // if (alertEnabled) {
         //     Notifications.showNotification("Cadence", message, {});
         // }
     }
 
-    function _alertEnd(aT, message) {
-        if (aT == 0 || aT == 2) {Attention.playTone(Attention.TONE_RESET);}
-        // if (aT == 1 || aT == 2) {
+    function _alertEnd(alertEnabled, message) {
+        if (alertEnabled) {Attention.playTone(Attention.TONE_RESET);}
+        // if (alertEnabled) {
         //     Notifications.showNotification("Cadence", message, {});
         // }
     }

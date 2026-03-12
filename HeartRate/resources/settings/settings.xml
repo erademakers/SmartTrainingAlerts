@@ -1,21 +1,37 @@
 <settings>
-  <!-- Power/Cadence field settings -->
-  <setting id="pc_power" type="number"><label>Power Threshold (W)</label><default>300</default></setting>
-  <setting id="pc_cadence" type="number"><label>Cadence Low (rpm)</label><default>70</default></setting>
-  <setting id="pc_duration" type="number"><label>Min time below cadence (s)</label><default>5</default></setting>
-  <setting id="pc_repeat" type="number"><label>Repeat alarm every (s)</label><default>30</default></setting>
-  <setting id="pc_alert" type="choice"><label>Alert Type</label>
-    <choices>
-      <choice id="tone">Tone</choice>
-      <choice id="gui">GUI</choice>
-      <choice id="both">Both</choice>
-      <choice id="off">Off</choice>
-    </choices>
-    <default>both</default>
+  <!-- Heart Rate zone settings -->
+  <setting propertyKey="@Properties.hr_zone1_max" title="Zone 1 max time (s)">
+    <settingConfig type="numeric" />
+  </setting>
+  <setting propertyKey="@Properties.hr_zone1_alert" title="Zone 1 alerts on">
+    <settingConfig type="boolean" />
   </setting>
 
-  <!-- Heart Rate zones settings -->
-  <setting id="hr_disable_zone1" type="boolean"><label>Disable Zone 1 alerts</label><default>true</default></setting>
-  <setting id="hr_disable_zone2" type="boolean"><label>Disable Zone 2 alerts</label><default>true</default></setting>
-  <setting id="hr_zone1_max" type="number"><label>Zone 1 max time (s)</label><default>18000</default></setting><setting id="hr_zone1_repeat" type="number"><label>Zone 1 repeat (s)</label><default>30</default></setting><setting id="hr_zone1_alert" type="choice"><label>Zone 1 alert</label><choices><choice id="tone">Tone</choice><choice id="gui">GUI</choice><choice id="both">Both</choice><choice id="off">Off</choice></choices><default>tone</default></setting><setting id="hr_zone2_max" type="number"><label>Zone 2 max time (s)</label><default>18000</default></setting><setting id="hr_zone2_repeat" type="number"><label>Zone 2 repeat (s)</label><default>30</default></setting><setting id="hr_zone2_alert" type="choice"><label>Zone 2 alert</label><choices><choice id="tone">Tone</choice><choice id="gui">GUI</choice><choice id="both">Both</choice><choice id="off">Off</choice></choices><default>tone</default></setting><setting id="hr_zone3_max" type="number"><label>Zone 3 max time (s)</label><default>300</default></setting><setting id="hr_zone3_repeat" type="number"><label>Zone 3 repeat (s)</label><default>30</default></setting><setting id="hr_zone3_alert" type="choice"><label>Zone 3 alert</label><choices><choice id="tone">Tone</choice><choice id="gui">GUI</choice><choice id="both">Both</choice><choice id="off">Off</choice></choices><default>tone</default></setting><setting id="hr_zone4_max" type="number"><label>Zone 4 max time (s)</label><default>300</default></setting><setting id="hr_zone4_repeat" type="number"><label>Zone 4 repeat (s)</label><default>30</default></setting><setting id="hr_zone4_alert" type="choice"><label>Zone 4 alert</label><choices><choice id="tone">Tone</choice><choice id="gui">GUI</choice><choice id="both">Both</choice><choice id="off">Off</choice></choices><default>tone</default></setting><setting id="hr_zone5_max" type="number"><label>Zone 5 max time (s)</label><default>300</default></setting><setting id="hr_zone5_repeat" type="number"><label>Zone 5 repeat (s)</label><default>30</default></setting><setting id="hr_zone5_alert" type="choice"><label>Zone 5 alert</label><choices><choice id="tone">Tone</choice><choice id="gui">GUI</choice><choice id="both">Both</choice><choice id="off">Off</choice></choices><default>tone</default></setting>
+  <setting propertyKey="@Properties.hr_zone2_max" title="Zone 2 max time (s)">
+    <settingConfig type="numeric" />
+  </setting>
+  <setting propertyKey="@Properties.hr_zone2_alert" title="Zone 2 alerts on">
+    <settingConfig type="boolean" />
+  </setting>
+
+  <setting propertyKey="@Properties.hr_zone3_max" title="Zone 3 max time (s)">
+    <settingConfig type="numeric" />
+  </setting>
+  <setting propertyKey="@Properties.hr_zone3_alert" title="Zone 3 alerts on">
+    <settingConfig type="boolean" />
+  </setting>
+
+  <setting propertyKey="@Properties.hr_zone4_max" title="Zone 4 max time (s)">
+    <settingConfig type="numeric" />
+  </setting>
+  <setting propertyKey="@Properties.hr_zone4_alert" title="Zone 4 alerts on">
+    <settingConfig type="boolean" />
+  </setting>
+
+  <setting propertyKey="@Properties.hr_zone5_max" title="Zone 5 max time (s)">
+    <settingConfig type="numeric" />
+  </setting>
+  <setting propertyKey="@Properties.hr_zone5_alert" title="Zone 5 alerts on">
+    <settingConfig type="boolean" />
+  </setting>
 </settings>

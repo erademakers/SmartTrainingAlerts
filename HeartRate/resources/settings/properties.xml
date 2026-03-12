@@ -1,0 +1,16 @@
+<properties>
+    <property id="hr_zone1_max"     type="number">18000</property>
+    <property id="hr_zone1_alert"   type="boolean">true</property>
+
+    <property id="hr_zone2_max"     type="number">18000</property>
+    <property id="hr_zone2_alert"   type="boolean">true</property>
+
+    <property id="hr_zone3_max"     type="number">300</property>
+    <property id="hr_zone3_alert"   type="boolean">true</property>
+
+    <property id="hr_zone4_max"     type="number">300</property>
+    <property id="hr_zone4_alert"   type="boolean">true</property>
+
+    <property id="hr_zone5_max"     type="number">300</property>
+    <property id="hr_zone5_alert"   type="boolean">true</property>
+</properties>

@@ -4,13 +4,7 @@
   <string id="pc_power_title">Power Threshold (W)</string>
   <string id="pc_cadence_title">Cadence Low (rpm)</string>
   <string id="pc_duration_title">Min time below cadence (s)</string>
-  <string id="pc_repeat_title">Repeat alarm every (s)</string>
 
-  <string id="pc_alert_title">Alert Type</string>
-  <string id="pc_alert_prompt">Select alert type</string>
-  <string id="pc_alert_tone">Tone</string>
-  <string id="pc_alert_gui">GUI</string>
-  <string id="pc_alert_both">Tone + GUI</string>
-  <string id="pc_alert_off">Off</string>
+  <string id="pc_alert_title">Alerts On</string>
   
 </strings>
