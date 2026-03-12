@@ -7,22 +7,22 @@
     <settingConfig type="numeric" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_reset_ref_zone" title="Zone 4 recovery reference zone">
+  <setting propertyKey="@Properties.hr_zone4_reset_ref_zone_max" title="Zone 4 recovery reference zone max">
     <settingConfig type="list">
       <listEntry value="1">Zone 1</listEntry>
-      <listEntry value="2">Zone 2</listEntry>
+      <listEntry value="2">Zone 2 or lower</listEntry>
       <listEntry value="12">Zone 1 or 2</listEntry>
-      <listEntry value="3">Zone 3</listEntry>
+      <listEntry value="3">Zone 3 or lower</listEntry>
     </settingConfig>
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone5_reset_ref_zone" title="Zone 5 recovery reference zone">
+  <setting propertyKey="@Properties.hr_zone5_reset_ref_zone_max" title="Zone 5 recovery reference zone max">
     <settingConfig type="list">
       <listEntry value="1">Zone 1</listEntry>
-      <listEntry value="2">Zone 2</listEntry>
+      <listEntry value="2">Zone 2 or lower</listEntry>
       <listEntry value="12">Zone 1 or 2</listEntry>
-      <listEntry value="3">Zone 3</listEntry>
-      <listEntry value="4">Zone 4</listEntry>
+      <listEntry value="3">Zone 3 or lower</listEntry>
+      <listEntry value="4">Zone 4 or lower</listEntry>
     </settingConfig>
   </setting>
 

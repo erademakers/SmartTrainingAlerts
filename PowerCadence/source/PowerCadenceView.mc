@@ -23,15 +23,8 @@ class PowerCadenceView extends WatchUi.DataField {
     var popupFg = Graphics.COLOR_WHITE;
     var fCadenceTop = null;
 
-    (:debuglog)
-    function debugLogImpl(msg) {
-        System.println(msg);
-    }
-
     function debugLog(msg) {
-        if (self has :debugLogImpl) {
-            debugLogImpl(msg);
-        }
+        // Logging disabled.
     }
 
     function onLayout(dc as Dc) as Void {

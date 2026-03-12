@@ -35,15 +35,8 @@ class HeartRateView extends Ui.DataField {
     var fZoneBottom = null;
     var zoneMaxLogged = false;
 
-    (:debuglog)
-    function debugLogImpl(msg) {
-        Sys.println(msg);
-    }
-
     function debugLog(msg) {
-        if (self has :debugLogImpl) {
-            debugLogImpl(msg);
-        }
+        Sys.println(msg);
     }
 
     function onLayout(dc as Gfx.Dc) as Void {
@@ -115,14 +108,19 @@ class HeartRateView extends Ui.DataField {
     }
 
     function isRecoveryRefZone(zone, refZone) {
+        // Recovery target means "this zone or lower".
         if (refZone == 12) {
             return (zone == 1 || zone == 2);
         }
-        return zone == refZone;
+        return zone <= refZone;
     }
 
     function getRecoveryNeeded(zone, ratioPct, minRefTime) {
         var interval = getZoneInterval(zone);
+        if (interval <= 0.0) {
+            // No completed/active interval yet, so no recovery is required.
+            return 0.0;
+        }
         var needed = interval * (ratioPct / 100.0);
         if (needed < minRefTime) {
             needed = minRefTime;
@@ -140,7 +138,7 @@ class HeartRateView extends Ui.DataField {
 
         // Outside the reference zone no recovery is currently accumulating.
         if (!isRecoveryRefZone(activeZone, refZone)) {
-            return needed;
+            return 0.0;
         }
 
         var remaining = needed - accum;
@@ -205,8 +203,8 @@ class HeartRateView extends Ui.DataField {
         var z5 = Settings.getNumber("hr_zone5_max_time", 300);
         var z4IntMax = Settings.getNumber("hr_zone4_interval_max_time", 300);
         var z5IntMax = Settings.getNumber("hr_zone5_interval_max_time", 180);
-        var z4Ref = Settings.getNumber("hr_zone4_reset_ref_zone", 2);
-        var z5Ref = Settings.getNumber("hr_zone5_reset_ref_zone", 2);
+        var z4Ref = Settings.getNumber("hr_zone4_reset_ref_zone_max", 2);
+        var z5Ref = Settings.getNumber("hr_zone5_reset_ref_zone_max", 2);
         var z4Min = Settings.getNumber("hr_zone4_reset_min_ref_time", 120);
         var z5Min = Settings.getNumber("hr_zone5_reset_min_ref_time", 180);
         var z4Ratio = Settings.getNumber("hr_zone4_reset_recovery_ratio_pct", 50);
@@ -249,8 +247,8 @@ class HeartRateView extends Ui.DataField {
         }
 
         var zone = getZone(hr);
-        var z4RefZone = Settings.getNumber("hr_zone4_reset_ref_zone", 2);
-        var z5RefZone = Settings.getNumber("hr_zone5_reset_ref_zone", 2);
+        var z4RefZone = Settings.getNumber("hr_zone4_reset_ref_zone_max", 2);
+        var z5RefZone = Settings.getNumber("hr_zone5_reset_ref_zone_max", 2);
         var z4MinRecovery = Settings.getNumber("hr_zone4_reset_min_ref_time", 120);
         var z5MinRecovery = Settings.getNumber("hr_zone5_reset_min_ref_time", 180);
         var z4RecoveryRatio = Settings.getNumber("hr_zone4_reset_recovery_ratio_pct", 50);
@@ -303,20 +301,12 @@ class HeartRateView extends Ui.DataField {
             setLastAlert(zone, now);
         }
 
-        // Layout: print zone and cumulative minutes for that zone.
+        // Layout: print zone and next-interval countdowns for Z4/Z5.
         var top = "Zone " + zone.format("%d");
         var minutes = (elapsed / 60).format("%d");
-        var bottom = minutes + " min";
-
-        // While recovering, show how long until Z4/Z5 intervals are allowed again.
-        if (zone <= 3) {
-            var z4Rem = getRecoveryRemaining(4, z4RefZone, z4MinRecovery, z4RecoveryRatio, zone);
-            var z5Rem = getRecoveryRemaining(5, z5RefZone, z5MinRecovery, z5RecoveryRatio, zone);
-            bottom = "Int Z4 in " + z4Rem.format("%d") + "s  Int Z5 in " + z5Rem.format("%d") + "s";
-        } else {
-            var intSec = getZoneInterval(zone).format("%d");
-            bottom = "Cum " + minutes + "m  Int " + intSec + "s";
-        }
+        var z4Rem = getRecoveryRemaining(4, z4RefZone, z4MinRecovery, z4RecoveryRatio, zone);
+        var z5Rem = getRecoveryRemaining(5, z5RefZone, z5MinRecovery, z5RecoveryRatio, zone);
+        var bottom = minutes + "m  Z4i in " + z4Rem.format("%d") + "s  Z5i in " + z5Rem.format("%d") + "s";
 
         if (fZoneTop != null) {
             fZoneTop.setColor(color);
