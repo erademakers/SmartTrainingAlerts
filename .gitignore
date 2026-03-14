@@ -1,2 +1,12 @@
 PowerCadence/.vscode/browse.vc.db
 .DS_Store
+HeartRate.prg
+gen/006-B4440-00/source/Rez.mcgen
+gen/resources/cache/i5d47c274.mbc
+internal-mir/Rez.mir
+HeartRate.prg.debug.xml
+mir/source/ZoneColors.mir
+mir/source/Settings.mir
+mir/source/HeartRateView.mir
+mir/source/HeartRateApp.mir
+HeartRate-settings.json
