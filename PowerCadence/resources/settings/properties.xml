@@ -1,7 +1,7 @@
 <properties>
-    <property id="pc_power"    type="number">100</property>
-    <property id="pc_cadence"  type="number">100</property>
-    <property id="pc_duration" type="number">1</property>
+    <property id="pc_power"    type="number">120</property>
+    <property id="pc_cadence"  type="number">90</property>
+    <property id="pc_duration" type="number">5</property>
 
     <property id="pc_alert"    type="boolean">true</property>
 </properties>

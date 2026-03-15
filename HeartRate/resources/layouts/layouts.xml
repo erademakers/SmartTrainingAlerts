@@ -1,6 +1,7 @@
 <layouts>
     <layout id="MainLayout">
-        <label id="zoneTop" x="center" y="64" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_LARGE" />
-        <label id="zoneBottom" x="center" y="132" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_SMALL" />
+        <bitmap id="iconHeart" filename="../drawables/heart_icon.svg" x="76" y="6" />
+        <label id="zoneTop" text="ZONE" x="112" y="20" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_MEDIUM" />
+        <label id="zoneBottom" x="center" y="132" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_LARGE" />
     </layout>
 </layouts>

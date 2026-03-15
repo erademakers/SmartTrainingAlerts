@@ -8,6 +8,11 @@ import Settings;
 import ZoneColors;
 
 class HeartRateView extends Ui.DataField {
+    // Test hook: seed current interval values without changing settings.
+    const TEST_CURRENT_INTERVAL_OVERRIDE = true;
+    const TEST_CURRENT_Z4_INTERVAL = 120.0;
+    const TEST_CURRENT_Z5_INTERVAL = 30.0;
+
     var lastAlert1 = 0.0;
     var lastAlert2 = 0.0;
     var lastAlert3 = 0.0;
@@ -65,6 +70,10 @@ class HeartRateView extends Ui.DataField {
 
         zoneInterval4 = 0.0;
         zoneInterval5 = 0.0;
+        if (TEST_CURRENT_INTERVAL_OVERRIDE) {
+            zoneInterval4 = TEST_CURRENT_Z4_INTERVAL;
+            zoneInterval5 = TEST_CURRENT_Z5_INTERVAL;
+        }
 
         lastSampleTime = 0.0;
         lastZone = 0;
@@ -81,6 +90,35 @@ class HeartRateView extends Ui.DataField {
         if (p < 80) { return 3; }
         if (p < 90) { return 4; }
         return 5;
+    }
+
+    function getZoneBottomValue(zone, hr) {
+        if (zone <= 3) {
+            return zone.format("%d");
+        }
+
+        var max = 190;
+        var pct = (hr * 100.0) / max;
+        var raw = 4.0 + ((pct - 80.0) / 10.0);
+        if (raw < 4.0) {
+            raw = 4.0;
+        }
+        if (raw > 5.0) {
+            raw = 5.0;
+        }
+
+        var halfSteps = ((raw * 2.0) + 0.5).toNumber();
+        if (halfSteps < 8) {
+            halfSteps = 8;
+        }
+        if (halfSteps > 10) {
+            halfSteps = 10;
+        }
+
+        if ((halfSteps % 2) == 0) {
+            return (halfSteps / 2).format("%d");
+        }
+        return ((halfSteps - 1) / 2).format("%d") + ".5";
     }
 
     function getZoneTotal(zone) {
@@ -169,6 +207,125 @@ class HeartRateView extends Ui.DataField {
         return (remaining > 0.0) ? remaining : 0.0;
     }
 
+    function getBarRatio(zone, activeZone, intervalMax, refZone, minRefTime, recoveryRatioPct) {
+        if (intervalMax <= 0.0) {
+            return 0.0;
+        }
+
+        var interval = getZoneInterval(zone);
+        if (interval <= 0.0) {
+            return 0.0;
+        }
+
+        if (activeZone == zone) {
+            var activeRatio = interval / intervalMax;
+            if (activeRatio > 1.0) { activeRatio = 1.0; }
+            return activeRatio;
+        }
+
+        // Outside the active interval zone, keep value fixed unless we are in a valid recovery zone.
+        if (!isRecoveryRefZone(activeZone, refZone)) {
+            var heldRatio = interval / intervalMax;
+            if (heldRatio > 1.0) { heldRatio = 1.0; }
+            return heldRatio;
+        }
+
+        var needed = getRecoveryNeeded(zone, recoveryRatioPct, minRefTime);
+        if (needed <= 0.0) {
+            var fallbackRatio = interval / intervalMax;
+            if (fallbackRatio > 1.0) { fallbackRatio = 1.0; }
+            return fallbackRatio;
+        }
+
+        var accum = (zone == 4) ? zone4RecoveryAccum : zone5RecoveryAccum;
+        var remaining = needed - accum;
+        if (remaining < 0.0) {
+            remaining = 0.0;
+        }
+
+        var recoveryRatio = remaining / needed;
+        if (recoveryRatio > 1.0) { recoveryRatio = 1.0; }
+        return (recoveryRatio > 0.0) ? recoveryRatio : 0.0;
+    }
+
+    function getIntervalLogText(zone, activeZone, intervalMax, refZone, minRefTime, recoveryRatioPct) {
+        var interval = getZoneInterval(zone);
+        if (interval <= 0.0) {
+            return "0s/" + intervalMax + "s";
+        }
+
+        if (activeZone == zone) {
+            return interval.format("%.1f") + "s/" + intervalMax + "s";
+        }
+
+        if (!isRecoveryRefZone(activeZone, refZone)) {
+            return interval.format("%.1f") + "s/" + intervalMax + "s";
+        }
+
+        var needed = getRecoveryNeeded(zone, recoveryRatioPct, minRefTime);
+        if (needed <= 0.0) {
+            return interval.format("%.1f") + "s/" + intervalMax + "s";
+        }
+
+        var accum = (zone == 4) ? zone4RecoveryAccum : zone5RecoveryAccum;
+        var remaining = needed - accum;
+        if (remaining < 0.0) {
+            remaining = 0.0;
+        }
+
+        return remaining.format("%.1f") + "s/" + needed.format("%.1f") + "s";
+    }
+
+    function drawRecoveryBar(dc as Gfx.Dc, x, y, width, height, ratio, fillColor) as Void {
+        if (ratio < 0.0) { ratio = 0.0; }
+        if (ratio > 1.0) { ratio = 1.0; }
+
+        var fillHeight = (height * ratio).toNumber();
+        if (fillHeight < 0) {
+            fillHeight = 0;
+        }
+
+        dc.setColor(0x303030, 0x303030);
+        dc.fillRectangle(x, y, width, height);
+
+        if (fillHeight > 0) {
+            var fillY = y + (height - fillHeight);
+            dc.setColor(fillColor, fillColor);
+            dc.fillRectangle(x, fillY, width, fillHeight);
+        }
+
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawRectangle(x, y, width, height);
+    }
+
+    function drawRecoveryBars(dc as Gfx.Dc, activeZone, z4IntMax, z5IntMax, z4RefZone, z5RefZone, z4MinRecovery, z5MinRecovery, z4RecoveryRatio, z5RecoveryRatio) as Void {
+        var sideMargin = 14;
+        var bottomMargin = 12;
+        var topY = 58;
+        var barWidth = 18;
+        var barHeight = dc.getHeight() - topY - bottomMargin;
+        if (barHeight < 40) {
+            barHeight = 40;
+        }
+        var leftX = sideMargin;
+        var rightX = dc.getWidth() - sideMargin - barWidth;
+
+        var z4Ratio = getBarRatio(4, activeZone, z4IntMax, z4RefZone, z4MinRecovery, z4RecoveryRatio);
+        var z5Ratio = getBarRatio(5, activeZone, z5IntMax, z5RefZone, z5MinRecovery, z5RecoveryRatio);
+
+        var labelFont = Gfx.FONT_TINY;
+        var labelY = topY - dc.getFontHeight(labelFont) - 2;
+        if (labelY < 0) {
+            labelY = 0;
+        }
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(leftX + (barWidth / 2), labelY, labelFont, "Z4", Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(rightX + (barWidth / 2), labelY, labelFont, "Z5", Gfx.TEXT_JUSTIFY_CENTER);
+
+        drawRecoveryBar(dc, leftX, topY, barWidth, barHeight, z4Ratio, Gfx.COLOR_ORANGE);
+        drawRecoveryBar(dc, rightX, topY, barWidth, barHeight, z5Ratio, Gfx.COLOR_RED);
+    }
+
     function applyZoneRecoveryReset(zone, delta, activeZone, refZone, minRefTime, recoveryRatioPct) {
         var inRef = isRecoveryRefZone(activeZone, refZone);
 
@@ -239,8 +396,8 @@ class HeartRateView extends Ui.DataField {
         var t3s = zoneTotal3.format("%d");
         var t4s = zoneTotal4.format("%d");
         var t5s = zoneTotal5.format("%d");
-        var i4s = zoneInterval4.format("%d");
-        var i5s = zoneInterval5.format("%d");
+        var i4s = getIntervalLogText(4, zone, z4IntMax, z4Ref, z4Min, z4Ratio);
+        var i5s = getIntervalLogText(5, zone, z5IntMax, z5Ref, z5Min, z5Ratio);
         var r4s = zone4RecoveryAccum.format("%d");
         var r5s = zone5RecoveryAccum.format("%d");
 
@@ -248,7 +405,7 @@ class HeartRateView extends Ui.DataField {
             "[HeartRate] HR=" + hr +
             " | Zone=" + zone.format("%d") +
             " | Cum: Z1=" + t1s + "s, Z2=" + t2s + "s, Z3=" + t3s + "s, Z4=" + t4s + "s, Z5=" + t5s + "s" +
-            " | Int: Z4=" + i4s + "s/" + z4IntMax + "s, Z5=" + i5s + "s/" + z5IntMax + "s" +
+            " | Int: Z4=" + i4s + ", Z5=" + i5s +
             " | Exceeded: int=" + intervalExceeded + ", max=" + cumulativeExceeded +
             " | Rec: Z4 ref=" + z4Ref + " min=" + z4Min + "s ratio=" + z4Ratio + "% acc=" + r4s + "s, Z5 ref=" + z5Ref + " min=" + z5Min + "s ratio=" + z5Ratio + "% acc=" + r5s + "s" +
             " | Max: Z1=" + z1 + "s, Z2=" + z2 + "s, Z3=" + z3 + "s, Z4=" + z4 + "s, Z5=" + z5 + "s"
@@ -302,11 +459,9 @@ class HeartRateView extends Ui.DataField {
 
         // settings
         var maxT = Settings.getNumber("hr_zone"+zone+"_max_time", zone<=2?18000:300);
-        var intMaxT = (zone == 4)
-            ? Settings.getNumber("hr_zone4_interval_max_time", 300)
-            : ((zone == 5)
-                ? Settings.getNumber("hr_zone5_interval_max_time", 180)
-                : 9999999);
+        var z4IntMax = Settings.getNumber("hr_zone4_interval_max_time", 300);
+        var z5IntMax = Settings.getNumber("hr_zone5_interval_max_time", 180);
+        var intMaxT = (zone == 4) ? z4IntMax : ((zone == 5) ? z5IntMax : 9999999);
         var rpt  = 30;
         var alertOn = Settings.getBool("hr_zone"+zone+"_alert", true);
 
@@ -341,23 +496,21 @@ class HeartRateView extends Ui.DataField {
             setLastAlert(zone, now);
         }
 
-        // Layout: print zone and next-interval countdowns for Z4/Z5.
-        var top = "Zone " + zone.format("%d");
-        var minutes = (elapsed / 60).format("%d");
-        var z4Rem = getRecoveryRemaining(4, z4RefZone, z4MinRecovery, z4RecoveryRatio, zone);
-        var z5Rem = getRecoveryRemaining(5, z5RefZone, z5MinRecovery, z5RecoveryRatio, zone);
-        var bottom = minutes + "m  Z4i in " + z4Rem.format("%d") + "s  Z5i in " + z5Rem.format("%d") + "s";
+        // Layout: top is static in XML; bottom shows current zone value.
+        var bottom = getZoneBottomValue(zone, hr);
+        var bottomColor = cumulativeExceeded ? Gfx.COLOR_RED : Gfx.COLOR_GREEN;
 
         if (fZoneTop != null) {
-            fZoneTop.setColor(color);
-            fZoneTop.setText(top);
+            fZoneTop.setColor(Gfx.COLOR_WHITE);
+            fZoneTop.setText("ZONE");
         }
         if (fZoneBottom != null) {
-            fZoneBottom.setColor(Gfx.COLOR_WHITE);
+            fZoneBottom.setColor(bottomColor);
             fZoneBottom.setText(bottom);
         }
 
         Ui.View.onUpdate(dc);
+        drawRecoveryBars(dc, zone, z4IntMax, z5IntMax, z4RefZone, z5RefZone, z4MinRecovery, z5MinRecovery, z4RecoveryRatio, z5RecoveryRatio);
 
     }
 
