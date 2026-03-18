@@ -1,14 +1,12 @@
 <properties>
-    <property id="hr_zone4_interval_max_time"   type="number">900</property>
-    <property id="hr_zone5_interval_max_time"   type="number">60</property>
+    <property id="hr_zone4_interval_max_time"   type="number">300</property>
+    <property id="hr_zone5_interval_max_time"   type="number">30</property>
 
-    <property id="hr_zone4_reset_ref_zone_max"  type="number">2</property>
-    <property id="hr_zone5_reset_ref_zone_max"  type="number">2</property>
+    <property id="hr_zone4_interval_recovery_ref_zone_max"  type="number">2</property>
+    <property id="hr_zone5_interval_recovery_ref_zone_max"  type="number">2</property>
 
-    <property id="hr_zone4_reset_min_ref_time"  type="number">300</property>
-    <property id="hr_zone4_reset_recovery_ratio_pct" type="number">50</property>
-    <property id="hr_zone5_reset_min_ref_time"  type="number">180</property>
-    <property id="hr_zone5_reset_recovery_ratio_pct" type="number">100</property>
+    <property id="hr_zone4_interval_recovery_min_time"  type="number">300</property>
+    <property id="hr_zone5_interval_recovery_min_time"  type="number">300</property>
 
     <property id="hr_zone1_max_time"  type="number">36000</property>
     <property id="hr_zone1_alert"   type="boolean">false</property>
@@ -19,9 +17,9 @@
     <property id="hr_zone3_max_time"  type="number">36000</property>
     <property id="hr_zone3_alert"   type="boolean">false</property>
 
-    <property id="hr_zone4_max_time"  type="number">3000</property>
+    <property id="hr_zone4_max_time"  type="number">1200</property>
     <property id="hr_zone4_alert"   type="boolean">true</property>
 
-    <property id="hr_zone5_max_time"  type="number">900</property>
+    <property id="hr_zone5_max_time"  type="number">180</property>
     <property id="hr_zone5_alert"   type="boolean">true</property>
 </properties>

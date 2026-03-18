@@ -1,13 +1,13 @@
 <settings>
   <!-- Heart Rate zone settings -->
-  <setting propertyKey="@Properties.hr_zone4_interval_max_time" title="Zone 4 max interval time (s)">
+  <setting propertyKey="@Properties.hr_zone4_interval_max_time" title="Zone 4 interval max time (s)">
     <settingConfig type="numeric" />
   </setting>
-  <setting propertyKey="@Properties.hr_zone5_interval_max_time" title="Zone 5 max interval time (s)">
+  <setting propertyKey="@Properties.hr_zone5_interval_max_time" title="Zone 5 interval max time (s)">
     <settingConfig type="numeric" />
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_reset_ref_zone_max" title="Zone 4 recovery reference zone max">
+  <setting propertyKey="@Properties.hr_zone4_interval_recovery_ref_zone_max" title="Zone 4 recovery reference zone max">
     <settingConfig type="list">
       <listEntry value="1">Zone 1</listEntry>
       <listEntry value="2">Zone 2 or lower</listEntry>
@@ -16,7 +16,7 @@
     </settingConfig>
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone5_reset_ref_zone_max" title="Zone 5 recovery reference zone max">
+  <setting propertyKey="@Properties.hr_zone5_interval_recovery_ref_zone_max" title="Zone 5 recovery reference zone max">
     <settingConfig type="list">
       <listEntry value="1">Zone 1</listEntry>
       <listEntry value="2">Zone 2 or lower</listEntry>
@@ -26,16 +26,10 @@
     </settingConfig>
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_reset_min_ref_time" title="Zone 4 min recovery time (s)">
+  <setting propertyKey="@Properties.hr_zone4_interval_recovery_min_time" title="Zone 4 min recovery time (s)">
     <settingConfig type="numeric" />
   </setting>
-  <setting propertyKey="@Properties.hr_zone4_reset_recovery_ratio_pct" title="Zone 4 recovery ratio (%)">
-    <settingConfig type="numeric" />
-  </setting>
-  <setting propertyKey="@Properties.hr_zone5_reset_min_ref_time" title="Zone 5 min recovery time (s)">
-    <settingConfig type="numeric" />
-  </setting>
-  <setting propertyKey="@Properties.hr_zone5_reset_recovery_ratio_pct" title="Zone 5 recovery ratio (%)">
+  <setting propertyKey="@Properties.hr_zone5_interval_recovery_min_time" title="Zone 5 min recovery time (s)">
     <settingConfig type="numeric" />
   </setting>
 
