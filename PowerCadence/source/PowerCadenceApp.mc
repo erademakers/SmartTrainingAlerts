@@ -1,9 +1,11 @@
 using Toybox.Application as App;
 using Toybox.WatchUi   as Ui;
+import Settings;
 
 class PowerCadenceApp extends App.AppBase {
     function initialize() {
         App.AppBase.initialize();
+        Settings.syncSideloadDefaults();
     }
     function getInitialView() {
         // Lever je DataField-view
