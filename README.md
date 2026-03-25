@@ -179,6 +179,37 @@ To get full settings support, upload your app as a private beta:
 My Device → Connect IQ Apps → HeartRate / PowerCadence → Settings
 ```
 
+### 📱 Install Beta via iPhone + Connect IQ app
+
+If install from Garmin Connect IQ fails, this is the most reliable iPhone flow.
+
+1. Build your app first:
+   - Quick test build (`.prg`):
+     ```
+     Ctrl + Shift + P → Monkey C: Build for Device
+     ```
+   - Portal upload build (`.iq`):
+     ```
+     cd /Users/erwinrademakers/workspace/SmartTrainingAlerts/HeartRate
+     "/Users/erwinrademakers/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-8.4.1-2026-02-03-e9f77eeaa/bin/monkeyc" -e -o bin/HeartRate.iq -f monkey.jungle -y /Users/erwinrademakers/MonkeyC/developer_key -d edge1050 -r
+     ```
+     (Use the equivalent command in `PowerCadence/` for PowerCadence.)
+2. Upload the `.iq` in Garmin Developer Portal → your app → **Beta Testing**.
+3. Click **Publish Beta** and copy/open the beta install link.
+4. On your iPhone (where Connect IQ is installed), open:
+   [apps.garmin.com/developer/dashboard](https://apps.garmin.com/developer/dashboard)
+5. Open your app page and tap the install/open link. iOS should offer **Open in Connect IQ**.
+6. Confirm install in the Connect IQ app and select your Edge 1050.
+7. Make sure the Edge 1050 is powered on and synced in Garmin Connect.
+8. Wait for sync to complete, then verify on device:
+   ```
+   Activity Profile → Data Screens → Connect IQ Fields
+   ```
+
+Troubleshooting:
+- Remove old sideloaded `.prg` of the same app before beta install.
+- If installation still fails, republish beta and open the latest install link again.
+
 ---
 
 ### ✔ On the Edge 1050 (on‑device settings, only when installed via portal)

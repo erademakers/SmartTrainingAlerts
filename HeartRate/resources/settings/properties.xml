@@ -1,12 +1,14 @@
 <properties>
+    <property id="__hr_settings_schema_version" type="number">0</property>
+
     <property id="hr_zone4_interval_max_time"   type="number">300</property>
     <property id="hr_zone5_interval_max_time"   type="number">30</property>
 
     <property id="hr_zone4_interval_recovery_ref_zone_max"  type="number">2</property>
     <property id="hr_zone5_interval_recovery_ref_zone_max"  type="number">2</property>
 
-    <property id="hr_zone4_interval_recovery_min_time"  type="number">300</property>
-    <property id="hr_zone5_interval_recovery_min_time"  type="number">300</property>
+    <property id="hr_zone4_interval_recovery_min_time"  type="number">30</property>
+    <property id="hr_zone5_interval_recovery_min_time"  type="number">10</property>
 
     <property id="hr_zone1_max_time"  type="number">36000</property>
     <property id="hr_zone1_alert"   type="boolean">false</property>

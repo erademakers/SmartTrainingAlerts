@@ -26,10 +26,10 @@
     </settingConfig>
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_interval_recovery_min_time" title="Zone 4 min recovery time (s)">
+  <setting propertyKey="@Properties.hr_zone4_interval_recovery_min_time" title="Zone 4 recovery threshold (s) - max(interval, this)">
     <settingConfig type="numeric" />
   </setting>
-  <setting propertyKey="@Properties.hr_zone5_interval_recovery_min_time" title="Zone 5 min recovery time (s)">
+  <setting propertyKey="@Properties.hr_zone5_interval_recovery_min_time" title="Zone 5 recovery threshold (s) - max(interval, this)">
     <settingConfig type="numeric" />
   </setting>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <iq:manifest version="3" xmlns:iq="http://www.garmin.com/xml/connectiq">
-    <iq:application id="ee3fe2c6fa5441be976e7494c82c633b" type="datafield" entry="PowerCadenceApp" name="@Strings.AppName" minApiLevel="1.5.0" launcherIcon="@Drawables.LauncherIcon">
+    <iq:application id="ee3fe2c6-fa54-41be-976e-7494c82c633b" type="datafield" entry="PowerCadenceApp" name="@Strings.AppName" minApiLevel="1.5.0" launcherIcon="@Drawables.LauncherIcon">
         <iq:products>
             <iq:product id="edge1050"/>
         </iq:products>

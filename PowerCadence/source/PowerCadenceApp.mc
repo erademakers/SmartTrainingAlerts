@@ -11,7 +11,9 @@ class PowerCadenceApp extends App.AppBase {
         // Lever je DataField-view
         return [ new PowerCadenceView() ];
     }
-    // Optioneel (alleen als je iets wil doen bij settings-updates via telefoon)
-    function onSettingsChanged() { }
+    // Reageert op settings-updates via Connect IQ
+    function onSettingsChanged() {
+        WatchUi.requestUpdate();
+    }
 }
 

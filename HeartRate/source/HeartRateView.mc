@@ -249,6 +249,10 @@ class HeartRateView extends Ui.DataField {
             // No completed/active interval yet, so no recovery is required.
             return 0.0;
         }
+        // Recovery time is the maximum of interval duration and minimum recovery time.
+        if (interval >= minRefTime) {
+            return interval;
+        }
         return minRefTime;
     }
 

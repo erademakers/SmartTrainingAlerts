@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f1309"/>
+      <stop offset="100%" stop-color="#2b1f14"/>
+    </linearGradient>
+    <linearGradient id="device" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1e1e"/>
+      <stop offset="100%" stop-color="#121212"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f1012"/>
+      <stop offset="100%" stop-color="#070809"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="20" stdDeviation="22" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+  <circle cx="1080" cy="180" r="210" fill="#5a3c1a" opacity="0.25"/>
+  <circle cx="170" cy="1040" r="240" fill="#6a4a20" opacity="0.22"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="140" y="230" rx="58" ry="58" width="920" height="620" fill="url(#device)"/>
+    <rect x="190" y="280" rx="28" ry="28" width="820" height="520" fill="url(#screen)"/>
+  </g>
+
+  <text x="600" y="185" text-anchor="middle" fill="#e5d7c8" font-family="Helvetica, Arial, sans-serif" font-size="44" letter-spacing="2">SMARTTRAININGALERTS</text>
+  <text x="600" y="905" text-anchor="middle" fill="#f0dfca" font-family="Helvetica, Arial, sans-serif" font-size="56" font-weight="700">PowerCadence Data Field</text>
+  <text x="600" y="958" text-anchor="middle" fill="#c3ad95" font-family="Helvetica, Arial, sans-serif" font-size="30">Dual condition alerts for power and cadence</text>
+
+  <g transform="translate(190 280)">
+    <rect width="820" height="520" rx="28" ry="28" fill="#090909"/>
+
+    <text x="200" y="112" text-anchor="middle" fill="#d8dee6" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700">POWER</text>
+    <text x="620" y="112" text-anchor="middle" fill="#d8dee6" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700">CADENCE</text>
+
+    <text x="200" y="275" text-anchor="middle" fill="#ffb020" font-family="Helvetica, Arial, sans-serif" font-size="118" font-weight="700">286</text>
+    <text x="620" y="275" text-anchor="middle" fill="#22c55e" font-family="Helvetica, Arial, sans-serif" font-size="118" font-weight="700">92</text>
+
+    <text x="200" y="330" text-anchor="middle" fill="#a7b1bb" font-family="Helvetica, Arial, sans-serif" font-size="26">watts</text>
+    <text x="620" y="330" text-anchor="middle" fill="#a7b1bb" font-family="Helvetica, Arial, sans-serif" font-size="26">rpm</text>
+
+    <rect x="120" y="390" width="500" height="16" rx="8" fill="#2a2f34"/>
+    <rect x="120" y="390" width="370" height="16" rx="8" fill="#ffb020"/>
+
+    <circle cx="700" cy="396" r="38" fill="#ff4d4d"/>
+    <text x="700" y="405" text-anchor="middle" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700">!</text>
+
+    <text x="410" y="470" text-anchor="middle" fill="#e6edf3" font-family="Helvetica, Arial, sans-serif" font-size="30">Alert: target exceeded for 5s</text>
+  </g>
+</svg>
