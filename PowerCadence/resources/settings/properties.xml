@@ -1,4 +1,6 @@
 <properties>
+    <property id="__pc_settings_schema_version" type="number">0</property>
+
     <property id="pc_power"    type="number">120</property>
     <property id="pc_cadence"  type="number">90</property>
     <property id="pc_duration" type="number">5</property>
