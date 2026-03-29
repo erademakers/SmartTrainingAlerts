@@ -1,0 +1,9 @@
+<settings>
+  <setting propertyKey="@Properties.spb_balance_min" title="@Strings.spb_balance_min_title">
+    <settingConfig type="numeric" />
+  </setting>
+
+  <setting propertyKey="@Properties.spb_alert" title="@Strings.spb_alert_title">
+    <settingConfig type="boolean" />
+  </setting>
+</settings>

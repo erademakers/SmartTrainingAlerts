@@ -15,6 +15,7 @@ class PowerCadenceView extends WatchUi.DataField {
     var lastAlert = 0.0;
     var cadenceLowStart = null;
     var alertActive = false; // Nieuw: houdt bij of alert actief is
+    var lastSettingsLogLine = null;
 
     // popup state
     var popupUntil = 0.0;
@@ -24,7 +25,15 @@ class PowerCadenceView extends WatchUi.DataField {
     var fCadenceTop = null;
 
     function debugLog(msg) {
-        // Logging disabled.
+        System.println(msg);
+    }
+
+    function logSettingsIfChanged() {
+        var settingsLogLine = Settings.getActiveSettingsLogLine();
+        if (settingsLogLine == lastSettingsLogLine) { return; }
+
+        lastSettingsLogLine = settingsLogLine;
+        debugLog("[PowerCadence] " + settingsLogLine);
     }
 
     function onLayout(dc as Dc) as Void {
@@ -39,6 +48,8 @@ class PowerCadenceView extends WatchUi.DataField {
     function onUpdate(dc as Graphics.Dc) {
         var info = Activity.getActivityInfo();
         if (info == null) {return;}
+
+        logSettingsIfChanged();
 
         var power = info.currentPower;
         var cad   = info.currentCadence;

@@ -48,9 +48,18 @@ class HeartRateView extends Ui.DataField {
     var fZoneTop = null;
     var fZoneBottom = null;
     var zoneMaxLogged = false;
+    var lastSettingsLogLine = null;
 
     function debugLog(msg) {
         Sys.println(msg);
+    }
+
+    function logSettingsIfChanged() {
+        var settingsLogLine = Settings.getActiveSettingsLogLine();
+        if (settingsLogLine == lastSettingsLogLine) { return; }
+
+        lastSettingsLogLine = settingsLogLine;
+        debugLog("[HeartRate] " + settingsLogLine);
     }
 
     function onLayout(dc as Gfx.Dc) as Void {
@@ -530,6 +539,8 @@ class HeartRateView extends Ui.DataField {
             resetSessionState();
             sessionInitialized = true;
         }
+
+        logSettingsIfChanged();
 
         if (!zoneMaxLogged) {
             logZoneMaxSettings();

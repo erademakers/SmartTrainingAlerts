@@ -5,6 +5,9 @@
     },
     {
       "path": "HeartRate"
+    },
+    {
+      "path": "PowerBalance"
     }
   ],
   "settings": {

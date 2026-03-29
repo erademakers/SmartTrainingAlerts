@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug PowerBalance (edge1050)",
+      "type": "monkeyc",
+      "request": "launch",
+      "project": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance",
+      "program": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/bin/PowerBalance.prg",
+      "settingsJson": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance-settings.json",
+      "jungleFiles": [
+        "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/monkey.debug.jungle"
+      ],
+      "device": "edge1050"
+    }
+  ]
+}

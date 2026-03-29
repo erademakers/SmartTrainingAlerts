@@ -1,0 +1,41 @@
+{
+  "settings" : [ {
+    "key" : "spb_balance_min",
+    "valueType" : "number",
+    "defaultValue" : 48,
+    "configTitle" : "spb_balance_min_title",
+    "configPrompt" : null,
+    "configType" : "numeric",
+    "configError" : null,
+    "configHelpUrl" : null,
+    "configReadonly" : false,
+    "configRequired" : false,
+    "configOptions" : null,
+    "configMin" : null,
+    "configMax" : null,
+    "configMaxLength" : null
+  }, {
+    "key" : "spb_alert",
+    "valueType" : "boolean",
+    "defaultValue" : true,
+    "configTitle" : "spb_alert_title",
+    "configPrompt" : null,
+    "configType" : "boolean",
+    "configError" : null,
+    "configHelpUrl" : null,
+    "configReadonly" : false,
+    "configRequired" : false,
+    "configOptions" : null,
+    "configMin" : null,
+    "configMax" : null,
+    "configMaxLength" : null
+  } ],
+  "supportsLiveValidation" : false,
+  "languages" : {
+    "valyrian" : {
+      "spb_balance_min_title" : "Min pedal balance (%)",
+      "spb_alert_title" : "Alerts On",
+      "AppName" : "PowerBalance"
+    }
+  }
+}

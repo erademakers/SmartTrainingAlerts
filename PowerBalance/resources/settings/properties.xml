@@ -1,0 +1,6 @@
+<properties>
+    <property id="__spb_settings_schema_version" type="number">0</property>
+
+    <property id="spb_balance_min" type="number">48</property>
+    <property id="spb_alert" type="boolean">true</property>
+</properties>

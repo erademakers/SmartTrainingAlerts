@@ -8,6 +8,20 @@ module Settings {
     const PC_DEFAULT_DURATION = 5;
     const PC_DEFAULT_ALERT = true;
 
+    function getActiveSettingsLogLine() {
+        var power = getNumber("pc_power", PC_DEFAULT_POWER);
+        var cadence = getNumber("pc_cadence", PC_DEFAULT_CADENCE);
+        var duration = getNumber("pc_duration", PC_DEFAULT_DURATION);
+        var alert = getBool("pc_alert", PC_DEFAULT_ALERT);
+        var schemaVersion = getNumber("__pc_settings_schema_version", 0);
+
+        return "settings power=" + power
+            + " cadence=" + cadence
+            + " duration=" + duration
+            + " alert=" + alert
+            + " schema=" + schemaVersion;
+    }
+
     function getNumber(id, dflt) {
         try { var v = AppProperties.getValue(id); return (v == null) ? dflt : v; }
         catch(e) { return dflt; }
