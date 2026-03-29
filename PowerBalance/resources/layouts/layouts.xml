@@ -2,7 +2,6 @@
     <layout id="MainLayout">
         <bitmap id="iconBalance" filename="../drawables/balance_icon.svg" x="76" y="6" />
         <label id="balanceLabel" text="BALANCE" x="112" y="20" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_MEDIUM" />
-        <label id="balanceTop" x="center" y="56" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_LARGE" />
-        <label id="balanceBottom" x="center" y="104" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_TINY" />
+        <label id="balanceTop" x="center" y="64" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_LARGE" />
     </layout>
 </layouts>

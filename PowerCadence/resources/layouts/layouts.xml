@@ -2,7 +2,6 @@
     <layout id="MainLayout">
         <bitmap id="iconCadence" filename="../drawables/cadence_icon.svg" x="76" y="6" />
         <label id="cadenceLabel" text="CADENCE" x="112" y="20" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_LEFT" font="Graphics.FONT_MEDIUM" />
-
         <label id="cadenceTop" x="center" y="64" color="Graphics.COLOR_WHITE" justification="Graphics.TEXT_JUSTIFY_CENTER" font="Graphics.FONT_LARGE" />
     </layout>
 </layouts>

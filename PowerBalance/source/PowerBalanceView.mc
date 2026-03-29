@@ -1,21 +1,23 @@
 import Toybox.AntPlus;
 import Toybox.Graphics;
-import Toybox.System;
 import Toybox.WatchUi;
 using Toybox.Attention;
 
 import Settings;
 
 class PowerBalanceView extends WatchUi.DataField {
+    // Simulator test override: set to true to force a fixed L/R balance value.
+    const TEST_BALANCE_OVERRIDE = true;
+    const TEST_LEFT_BALANCE = 48;
+    const TEST_RIGHT_BALANCE = 52;
+
     var bikePower = null;
     var alertActive = false;
     var fBalanceTop = null;
-    var fBalanceBottom = null;
 
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
         fBalanceTop = View.findDrawableById("balanceTop") as Text;
-        fBalanceBottom = View.findDrawableById("balanceBottom") as Text;
     }
 
     function initialize() {
@@ -28,27 +30,44 @@ class PowerBalanceView extends WatchUi.DataField {
         var alertEnabled = Settings.getBool("spb_alert", true);
 
         var top = "--/--";
-        var bottom = "No balance data";
         var color = Graphics.COLOR_DK_GRAY;
 
-        var balanceData = null;
-        try {
-            if (bikePower != null) {
-                balanceData = bikePower.getPedalPowerBalance();
+        var hasBalance = false;
+        var leftBalance = 0;
+        var rightBalance = 0;
+        var weakSide = 0;
+
+        if (TEST_BALANCE_OVERRIDE) {
+            leftBalance = TEST_LEFT_BALANCE;
+            rightBalance = TEST_RIGHT_BALANCE;
+            if (leftBalance < 0) { leftBalance = 0; }
+            if (leftBalance > 100) { leftBalance = 100; }
+            if (rightBalance < 0) { rightBalance = 0; }
+            if (rightBalance > 100) { rightBalance = 100; }
+            weakSide = (leftBalance < rightBalance) ? leftBalance : rightBalance;
+            hasBalance = true;
+        } else {
+            var balanceData = null;
+            try {
+                if (bikePower != null) {
+                    balanceData = bikePower.getPedalPowerBalance();
+                }
+            } catch(e) {
+                balanceData = null;
             }
-        } catch(e) {
-            balanceData = null;
+
+            if (balanceData != null && balanceData.pedalPowerPercent != null && balanceData.rightPedalIndicator != null) {
+                var pedalPowerPercent = balanceData.pedalPowerPercent;
+                var rightPedalIndicator = balanceData.rightPedalIndicator;
+                leftBalance = rightPedalIndicator ? (100 - pedalPowerPercent) : pedalPowerPercent;
+                rightBalance = rightPedalIndicator ? pedalPowerPercent : (100 - pedalPowerPercent);
+                weakSide = (leftBalance < rightBalance) ? leftBalance : rightBalance;
+                hasBalance = true;
+            }
         }
 
-        if (balanceData != null && balanceData.pedalPowerPercent != null && balanceData.rightPedalIndicator != null) {
-            var pedalPowerPercent = balanceData.pedalPowerPercent;
-            var rightPedalIndicator = balanceData.rightPedalIndicator;
-            var leftBalance = rightPedalIndicator ? (100 - pedalPowerPercent) : pedalPowerPercent;
-            var rightBalance = rightPedalIndicator ? pedalPowerPercent : (100 - pedalPowerPercent);
-            var weakSide = (leftBalance < rightBalance) ? leftBalance : rightBalance;
-
+        if (hasBalance) {
             top = leftBalance.format("%d") + "/" + rightBalance.format("%d");
-            bottom = "Min " + weakSide.format("%d") + "% • Thr " + threshold + "%";
             color = (weakSide < threshold) ? Graphics.COLOR_RED : Graphics.COLOR_GREEN;
 
             if (weakSide < threshold) {
@@ -69,11 +88,6 @@ class PowerBalanceView extends WatchUi.DataField {
         if (fBalanceTop != null) {
             fBalanceTop.setColor(color);
             fBalanceTop.setText(top);
-        }
-
-        if (fBalanceBottom != null) {
-            fBalanceBottom.setColor(Graphics.COLOR_WHITE);
-            fBalanceBottom.setText(bottom);
         }
 
         View.onUpdate(dc);

@@ -43,6 +43,7 @@ PowerBalance/
 Each project contains:
 - `manifest.xml` — schema v3, validated
 - `monkey.jungle`
+- `build_iq.sh` — builds a release `.iq` package for portal/beta upload
 - `source/` — your Monkey C code
 - `resources/` — icons, strings, settings
 
@@ -122,6 +123,8 @@ My Device → Activities & Apps → Data Fields → [App] → Settings
 Use this flow when you want proper app settings support and reliable install/update behavior.
 
 ### 1. Build `.iq` package (no `.prg` build required)
+
+Each project root contains a `build_iq.sh` script that builds the signed release `.iq` package.
 
 Use your existing signing key:
 ```
