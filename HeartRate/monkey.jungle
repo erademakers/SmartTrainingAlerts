@@ -1,2 +1,3 @@
 project.manifest = manifest.xml
 base.excludeAnnotations = debuglog
+base.sourcePath = source;source-release

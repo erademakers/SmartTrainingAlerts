@@ -11,7 +11,7 @@ import Settings;
 
 //https://developer.garmin.com/connect-iq/api-docs/
 
-class PowerCadenceView extends WatchUi.DataField {    
+class PowerCadenceView extends WatchUi.DataField {
     var lastAlert = 0.0;
     var cadenceLowStart = null;
     var alertActive = false; // Nieuw: houdt bij of alert actief is
@@ -25,6 +25,7 @@ class PowerCadenceView extends WatchUi.DataField {
     var fCadenceTop = null;
 
     function debugLog(msg) {
+        if (!DEBUG_MODE) { return; }
         System.println(msg);
     }
 

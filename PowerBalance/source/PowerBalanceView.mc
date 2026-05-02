@@ -6,8 +6,10 @@ using Toybox.Attention;
 import Settings;
 
 class PowerBalanceView extends WatchUi.DataField {
+    // Debug & test flags
+    const DEBUG_MODE = false;  // Set to true for simulator only, false for production device
     // Simulator test override: set to true to force a fixed L/R balance value.
-    const TEST_BALANCE_OVERRIDE = true;
+    const TEST_BALANCE_OVERRIDE = (DEBUG_MODE);
     const TEST_LEFT_BALANCE = 48;
     const TEST_RIGHT_BALANCE = 52;
 

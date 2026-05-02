@@ -5,6 +5,7 @@
       "name": "Debug PowerBalance (edge1050)",
       "type": "monkeyc",
       "request": "launch",
+      "preLaunchTask": "Build PowerBalance",
       "project": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance",
       "program": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/bin/PowerBalance.prg",
       "settingsJson": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance-settings.json",

@@ -5,23 +5,12 @@
       "name": "Debug HeartRate (edge1050)",
       "type": "monkeyc",
       "request": "launch",
+      "preLaunchTask": "Build HeartRate",
       "project": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/HeartRate",
       "program": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/HeartRate/bin/HeartRate.prg",
       "settingsJson": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/HeartRate-settings.json",
       "jungleFiles": [
         "/Users/erwinrademakers/workspace/SmartTrainingAlerts/HeartRate/monkey.debug.jungle"
-      ],
-      "device": "edge1050"
-    },
-    {
-      "name": "Debug PowerCadence (edge1050)",
-      "type": "monkeyc",
-      "request": "launch",
-      "project": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerCadence",
-      "program": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerCadence/bin/PowerCadence.prg",
-      "settingsJson": "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerCadence-settings.json",
-      "jungleFiles": [
-        "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerCadence/monkey.debug.jungle"
       ],
       "device": "edge1050"
     }

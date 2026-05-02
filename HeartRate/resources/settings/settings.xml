@@ -7,6 +7,10 @@
     <settingConfig type="numeric" />
   </setting>
 
+  <setting propertyKey="@Properties.hr_bar_tick_interval" title="Bar tick interval (s) - tick every Ns on both bars; auto-halved if larger than intervalMax/2 to guarantee at least 1 tick">
+    <settingConfig type="numeric" />
+  </setting>
+
   <setting propertyKey="@Properties.hr_zone4_interval_recovery_ref_zone_max" title="Zone 4 recovery reference zone max">
     <settingConfig type="list">
       <listEntry value="1">Zone 1</listEntry>

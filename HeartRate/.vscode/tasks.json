@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build HeartRate",
+      "type": "shell",
+      "command": "\"${env:HOME}/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-8.4.1-2026-02-03-e9f77eeaa/bin/monkeyc\" -o \"bin/HeartRate.prg\" -f \"monkey.debug.jungle\" -y \"${env:HOME}/MonkeyC/developer_key\" -d \"edge1050\"",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Build HeartRate (Connect IQ)",
+      "type": "shell",
+      "command": "\"${env:HOME}/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-8.4.1-2026-02-03-e9f77eeaa/bin/monkeyc\" -e -o \"bin/HeartRate.iq\" -f \"monkey.jungle\" -y \"${env:HOME}/MonkeyC/developer_key\" -d \"edge1050\" -r",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}
