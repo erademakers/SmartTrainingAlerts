@@ -362,12 +362,12 @@ class HeartRateView extends Ui.DataField {
             while (t < intervalMax) {
                 var tickY = y + height - ((height * t.toFloat() / intervalMax.toFloat()).toNumber());
                 if (tickY > y && tickY < y + height) {
-                    dc.setColor(0x606060, 0x606060);
-                    dc.fillRectangle(x + 1, tickY, width - 2, 1);
+                    dc.setColor(0xAAAAAA, 0xAAAAAA);
+                    dc.fillRectangle(x + 1, tickY, width - 2, 2);
                     var labelY = tickY - (fontHeight / 2);
                     if (labelY >= y && labelY + fontHeight <= y + height) {
                         var label = t.format("%d") + "s";
-                        dc.setColor(0x505050, Gfx.COLOR_TRANSPARENT);
+                        dc.setColor(0xAAAAAA, Gfx.COLOR_TRANSPARENT);
                         if (labelOnRight) {
                             dc.drawText(x + width + 2, labelY, tickFont, label, Gfx.TEXT_JUSTIFY_LEFT);
                         } else {
@@ -429,8 +429,8 @@ class HeartRateView extends Ui.DataField {
         var z5IntMax = getNumberSetting("hr_zone5_interval_max_time", "hr_zone5_interval_max_seconds", 30);
         var z4RefZone = getNumberSetting3("hr_zone4_interval_recovery_ref_zone_max", "hr_zone4_recovery_ref_zone_max", "hr_zone4_reset_ref_zone_max", 3);
         var z5RefZone = getNumberSetting3("hr_zone5_interval_recovery_ref_zone_max", "hr_zone5_recovery_ref_zone_max", "hr_zone5_reset_ref_zone_max", 3);
-        var z4MinRecovery = getNumberSetting3("hr_zone4_interval_recovery_min_time", "hr_zone4_interval_recovery_min_seconds", "hr_zone4_reset_min_ref_time", 120);
-        var z5MinRecovery = getNumberSetting3("hr_zone5_interval_recovery_min_time", "hr_zone5_interval_recovery_min_seconds", "hr_zone5_reset_min_ref_time", 60);
+        var z4MinRecovery = getNumberSetting3("hr_zone4_interval_recovery_time_ratio", "hr_zone4_interval_recovery_time", "hr_zone4_interval_recovery_min_time", 120);
+        var z5MinRecovery = getNumberSetting3("hr_zone5_interval_recovery_time_ratio", "hr_zone5_interval_recovery_time", "hr_zone5_interval_recovery_min_time", 60);
 
         if (fZoneTop != null) {
             fZoneTop.setColor(Gfx.COLOR_WHITE);
@@ -445,7 +445,7 @@ class HeartRateView extends Ui.DataField {
         drawRecoveryBars(dc, 0, z4IntMax, z5IntMax, z4RefZone, z5RefZone, z4MinRecovery, z5MinRecovery);
     }
 
-    function applyZoneRecoveryReset(zone, delta, activeZone, refZone, minRefTime, intervalMax) {
+    function applyZoneRecoveryReset(zone, delta, activeZone, refZone, drainRate, intervalMax) {
         var inRef = isRecoveryRefZone(activeZone, refZone);
 
         if (zone == 4) {
@@ -461,9 +461,10 @@ class HeartRateView extends Ui.DataField {
 
             zone4RecoveryAccum += delta;
 
-            if (minRefTime > 0.0 && intervalMax > 0.0) {
-                var rate = intervalMax.toFloat() / minRefTime.toFloat();
-                zoneInterval4 -= delta * rate;
+            if (drainRate > 0.0) {
+                // hr_zone4_interval_recovery_time_ratio: interval drains drainRate seconds per second of recovery.
+                // E.g. drainRate=2: 1s of recovery drains 2s of the interval counter.
+                zoneInterval4 -= delta * drainRate.toFloat();
                 if (zoneInterval4 < 0.0) { zoneInterval4 = 0.0; }
             }
 
@@ -493,9 +494,8 @@ class HeartRateView extends Ui.DataField {
 
             zone5RecoveryAccum += delta;
 
-            if (minRefTime > 0.0 && intervalMax > 0.0) {
-                var rate5 = intervalMax.toFloat() / minRefTime.toFloat();
-                zoneInterval5 -= delta * rate5;
+            if (drainRate > 0.0) {
+                zoneInterval5 -= delta * drainRate.toFloat();
                 if (zoneInterval5 < 0.0) { zoneInterval5 = 0.0; }
             }
 
@@ -531,8 +531,8 @@ class HeartRateView extends Ui.DataField {
         var z5IntMax = getNumberSetting("hr_zone5_interval_max_time", "hr_zone5_interval_max_seconds", 180);
         var z4Ref = getNumberSetting3("hr_zone4_interval_recovery_ref_zone_max", "hr_zone4_recovery_ref_zone_max", "hr_zone4_reset_ref_zone_max", 2);
         var z5Ref = getNumberSetting3("hr_zone5_interval_recovery_ref_zone_max", "hr_zone5_recovery_ref_zone_max", "hr_zone5_reset_ref_zone_max", 2);
-        var z4Min = getNumberSetting3("hr_zone4_interval_recovery_min_time", "hr_zone4_interval_recovery_min_seconds", "hr_zone4_reset_min_ref_time", 120);
-        var z5Min = getNumberSetting3("hr_zone5_interval_recovery_min_time", "hr_zone5_interval_recovery_min_seconds", "hr_zone5_reset_min_ref_time", 180);
+        var z4Min = getNumberSetting3("hr_zone4_interval_recovery_time_ratio", "hr_zone4_interval_recovery_time", "hr_zone4_interval_recovery_min_time", 120);
+        var z5Min = getNumberSetting3("hr_zone5_interval_recovery_time_ratio", "hr_zone5_interval_recovery_time", "hr_zone5_interval_recovery_min_time", 180);
 
         var t1s = zoneTotal1.format("%d");
         var t2s = zoneTotal2.format("%d");
@@ -595,8 +595,8 @@ class HeartRateView extends Ui.DataField {
         var zone = getZone(hr);
         var z4RefZone = getNumberSetting3("hr_zone4_interval_recovery_ref_zone_max", "hr_zone4_recovery_ref_zone_max", "hr_zone4_reset_ref_zone_max", 2);
         var z5RefZone = getNumberSetting3("hr_zone5_interval_recovery_ref_zone_max", "hr_zone5_recovery_ref_zone_max", "hr_zone5_reset_ref_zone_max", 2);
-        var z4MinRecovery = getNumberSetting3("hr_zone4_interval_recovery_min_time", "hr_zone4_interval_recovery_min_seconds", "hr_zone4_reset_min_ref_time", 120);
-        var z5MinRecovery = getNumberSetting3("hr_zone5_interval_recovery_min_time", "hr_zone5_interval_recovery_min_seconds", "hr_zone5_reset_min_ref_time", 180);
+        var z4MinRecovery = getNumberSetting3("hr_zone4_interval_recovery_time_ratio", "hr_zone4_interval_recovery_time", "hr_zone4_interval_recovery_min_time", 120);
+        var z5MinRecovery = getNumberSetting3("hr_zone5_interval_recovery_time_ratio", "hr_zone5_interval_recovery_time", "hr_zone5_interval_recovery_min_time", 180);
         var z4IntMax = getNumberSetting("hr_zone4_interval_max_time", "hr_zone4_interval_max_seconds", 300);
         var z5IntMax = getNumberSetting("hr_zone5_interval_max_time", "hr_zone5_interval_max_seconds", 180);
 

@@ -7,8 +7,8 @@ module Settings {
     const HR_DEFAULT_ZONE5_INTERVAL_MAX_TIME = 30;
     const HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_REF_ZONE_MAX = 3;
     const HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_REF_ZONE_MAX = 3;
-    const HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_MIN_TIME = 120;
-    const HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_MIN_TIME = 60;
+    const HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_TIME_RATIO = 1;
+    const HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_TIME_RATIO = 1;
     const HR_DEFAULT_ZONE1_MAX_TIME = 36000;
     const HR_DEFAULT_ZONE1_ALERT = false;
     const HR_DEFAULT_ZONE2_MAX_TIME = 36000;
@@ -26,8 +26,8 @@ module Settings {
             + " z5_int_max=" + getNumber("hr_zone5_interval_max_time", HR_DEFAULT_ZONE5_INTERVAL_MAX_TIME)
             + " z4_ref_zone=" + getNumber("hr_zone4_interval_recovery_ref_zone_max", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_REF_ZONE_MAX)
             + " z5_ref_zone=" + getNumber("hr_zone5_interval_recovery_ref_zone_max", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_REF_ZONE_MAX)
-            + " z4_min_recovery=" + getNumber("hr_zone4_interval_recovery_min_time", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_MIN_TIME)
-            + " z5_min_recovery=" + getNumber("hr_zone5_interval_recovery_min_time", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_MIN_TIME)
+            + " z4_recovery_ref=" + getNumber("hr_zone4_interval_recovery_time_ratio", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_TIME_RATIO)
+            + " z5_recovery_ref=" + getNumber("hr_zone5_interval_recovery_time_ratio", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_TIME_RATIO)
             + " z1_max=" + getNumber("hr_zone1_max_time", HR_DEFAULT_ZONE1_MAX_TIME)
             + " z1_alert=" + getBool("hr_zone1_alert", HR_DEFAULT_ZONE1_ALERT)
             + " z2_max=" + getNumber("hr_zone2_max_time", HR_DEFAULT_ZONE2_MAX_TIME)
@@ -62,8 +62,8 @@ module Settings {
         AppProperties.setValue("hr_zone5_interval_max_time", HR_DEFAULT_ZONE5_INTERVAL_MAX_TIME);
         AppProperties.setValue("hr_zone4_interval_recovery_ref_zone_max", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_REF_ZONE_MAX);
         AppProperties.setValue("hr_zone5_interval_recovery_ref_zone_max", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_REF_ZONE_MAX);
-        AppProperties.setValue("hr_zone4_interval_recovery_min_time", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_MIN_TIME);
-        AppProperties.setValue("hr_zone5_interval_recovery_min_time", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_MIN_TIME);
+        AppProperties.setValue("hr_zone4_interval_recovery_time_ratio", HR_DEFAULT_ZONE4_INTERVAL_RECOVERY_TIME_RATIO);
+        AppProperties.setValue("hr_zone5_interval_recovery_time_ratio", HR_DEFAULT_ZONE5_INTERVAL_RECOVERY_TIME_RATIO);
         AppProperties.setValue("hr_zone1_max_time", HR_DEFAULT_ZONE1_MAX_TIME);
         AppProperties.setValue("hr_zone1_alert", HR_DEFAULT_ZONE1_ALERT);
         AppProperties.setValue("hr_zone2_max_time", HR_DEFAULT_ZONE2_MAX_TIME);

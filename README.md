@@ -182,6 +182,29 @@ My Device → Activities & Apps → Data Fields → [App] → Settings
 
 Sideloaded `.prg` installs do not provide an editable settings screen.
 
+### HeartRate — key settings reference
+
+| Setting key | Description |
+|---|---|
+| `hr_zone4_interval_max_time` | Max time (s) allowed in Zone 4 before an alert |
+| `hr_zone5_interval_max_time` | Max time (s) allowed in Zone 5 before an alert |
+| `hr_zone4_interval_recovery_ref_zone_max` | Highest zone that counts as recovery after a Z4 interval |
+| `hr_zone5_interval_recovery_ref_zone_max` | Highest zone that counts as recovery after a Z5 interval |
+| `hr_zone4_interval_recovery_time_ratio` | Recovery drain rate for Zone 4: the interval counter drains this many seconds for every 1 second spent in the recovery reference zone. E.g. `2` means 1s of recovery cancels 2s of interval. Default `1` (1:1). |
+| `hr_zone5_interval_recovery_time_ratio` | Same as above for Zone 5 |
+| `hr_zone{1-5}_max_time` | Max cumulative time (s) in that zone before an alert |
+| `hr_zone{1-5}_alert` | Enable/disable alerts for that zone |
+| `hr_bar_tick_interval` | Interval (s) between bar tick marks (auto-halved if > intervalMax/2) |
+
+### PowerCadence — key settings reference
+
+| Setting key | Description |
+|---|---|
+| `pc_power` | Power threshold (W) — alert triggers when power is above this value |
+| `pc_cadence` | Cadence low threshold (rpm) — alert triggers when cadence falls below this value while power exceeds `pc_power` |
+| `pc_duration` | Minimum time (s) cadence must be below threshold before an alert fires |
+| `pc_alert` | Enable/disable alerts |
+
 ---
 
 ## Deploy for Own Use (Sideloading)
@@ -223,8 +246,14 @@ The `.iq` file is written to `bin/`.
 3. Upload the `.iq` file and click **Publish Beta**
 
 ### 3. Install on device
-1. Open the beta install link on your iPhone
-2. Open in **Connect IQ** and choose your Edge 1050
+
+> ⚠️ **Before installing an update**, always clean up first to avoid stale settings or install failures:
+> 1. Open the **Connect IQ** app on your iPhone → find the app → **Remove**
+> 2. On the Edge 1050: go to the activity profile that uses the data field → remove the data field from the screen
+> 3. Then proceed with the install below
+
+1. Open [apps.garmin.com/developer/dashboard](https://apps.garmin.com/developer/dashboard) on your iPhone browser → open the app → tap the **Open in Connect IQ** button at the top of the page
+2. In the Connect IQ app, choose your Edge 1050 and confirm the install
 3. Sync Garmin Connect
 4. Verify the field appears under data fields on the device
 

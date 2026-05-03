@@ -7,8 +7,8 @@
     <property id="hr_zone4_interval_recovery_ref_zone_max"  type="number">3</property>
     <property id="hr_zone5_interval_recovery_ref_zone_max"  type="number">3</property>
 
-    <property id="hr_zone4_interval_recovery_min_time"  type="number">120</property>
-    <property id="hr_zone5_interval_recovery_min_time"  type="number">60</property>
+    <property id="hr_zone4_interval_recovery_time_ratio"  type="number">1</property>
+    <property id="hr_zone5_interval_recovery_time_ratio"  type="number">1</property>
 
     <property id="hr_zone1_max_time"  type="number">36000</property>
     <property id="hr_zone1_alert"   type="boolean">false</property>

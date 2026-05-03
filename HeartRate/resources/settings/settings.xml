@@ -30,10 +30,10 @@
     </settingConfig>
   </setting>
 
-  <setting propertyKey="@Properties.hr_zone4_interval_recovery_min_time" title="Zone 4 recovery threshold (s) - max(interval, this)">
+  <setting propertyKey="@Properties.hr_zone4_interval_recovery_time_ratio" title="Zone 4 recovery drain rate (interval drains N seconds per second of recovery)">
     <settingConfig type="numeric" />
   </setting>
-  <setting propertyKey="@Properties.hr_zone5_interval_recovery_min_time" title="Zone 5 recovery threshold (s) - max(interval, this)">
+  <setting propertyKey="@Properties.hr_zone5_interval_recovery_time_ratio" title="Zone 5 recovery drain rate (interval drains N seconds per second of recovery)">
     <settingConfig type="numeric" />
   </setting>
 
