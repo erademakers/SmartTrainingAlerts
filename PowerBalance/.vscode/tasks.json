@@ -14,7 +14,7 @@
     {
       "label": "Build PowerBalance (Connect IQ)",
       "type": "shell",
-      "command": "\"${env:HOME}/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-8.4.1-2026-02-03-e9f77eeaa/bin/monkeyc\" -e -o \"bin/PowerBalance.iq\" -f \"monkey.jungle\" -y \"${env:HOME}/MonkeyC/developer_key\" -d \"edge1050\" -r",
+      "command": "\"${env:HOME}/Library/Application Support/Garmin/ConnectIQ/Sdks/connectiq-sdk-mac-8.4.1-2026-02-03-e9f77eeaa/bin/monkeyc\" -e -o \"bin/PowerBalance.iq\" -f \"monkey.release.jungle\" -y \"${env:HOME}/MonkeyC/developer_key\" -d \"edge1050\" -r",
       "options": {
         "cwd": "${workspaceFolder}"
       },

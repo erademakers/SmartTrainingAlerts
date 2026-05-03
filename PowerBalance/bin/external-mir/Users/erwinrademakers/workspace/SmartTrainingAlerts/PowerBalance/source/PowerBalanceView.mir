@@ -1,0 +1,1133 @@
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 1; @symbol_importdef<0> = [Toybox,1,7,13]; @symbol_importdef<1> = [AntPlus,1,14,21]; ]
+import Toybox.AntPlus;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 2; @symbol_importdef<0> = [Toybox,2,7,13]; @symbol_importdef<1> = [Graphics,2,14,22]; ]
+import Toybox.Graphics;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 3; @symbol_importdef<0> = [Toybox,3,7,13]; @symbol_importdef<1> = [System,3,14,20]; ]
+import Toybox.System;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 4; @symbol_importdef<0> = [Toybox,4,7,13]; @symbol_importdef<1> = [WatchUi,4,14,21]; ]
+import Toybox.WatchUi;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 5; @symbol_usingdef<0> = [Toybox,5,6,12]; @symbol_usingdef<1> = [Attention,5,13,22]; ]
+using Toybox.Attention;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 7; @symbol_importdef<0> = [Settings,7,7,15]; ]
+import Settings;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 9; @symbol_classdef = [PowerBalanceView,9,6,22]; @symbol_extends<0> = [WatchUi,9,31,38]; @symbol_extends<1> = [DataField,9,39,48]; ]
+class PowerBalanceView extends WatchUi.DataField {
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 9; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 10; @position = 8; @symbol_vardef = [bikePower,10,8,17]; ]
+    var bikePower = null;
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 11; @position = 8; @symbol_vardef = [alertActive,11,8,19]; ]
+    var alertActive = false;
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 12; @position = 8; @symbol_vardef = [fBalanceTop,12,8,19]; ]
+    var fBalanceTop = null;
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 13; @position = 8; @symbol_vardef = [lastSettingsLogLine,13,8,27]; ]
+    var lastSettingsLogLine = null;
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 14; @position = 8; @symbol_vardef = [testStartTime,14,8,21]; ]
+    var testStartTime = -1;
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 19; @symbol_functiondef = [getSyntheticBalance,19,13,32]; @symbol_param<0> = [elapsedMs,19,33,42]; ]
+    function getSyntheticBalance(elapsedMs) {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 21 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_stop" ]
+        %seq.1 = local;
+        symbol [ seq %seq.1 21 12 15 ];
+        %tmp.1 = newa 7;
+        %tmp.2 = newa 3;
+        %tmp.3 = 10;
+        %tmp.4 = dup %tmp.2;
+        %tmp.5 = aputv %tmp.4 0 %tmp.3;
+        %tmp.6 = 50;
+        %tmp.7 = dup %tmp.5;
+        %tmp.8 = aputv %tmp.7 1 %tmp.6;
+        %tmp.9 = 50;
+        %tmp.10 = dup %tmp.8;
+        %tmp.11 = aputv %tmp.10 2 %tmp.9;
+        %tmp.12 = dup %tmp.1;
+        %tmp.13 = aputv %tmp.12 0 %tmp.11;
+        %tmp.14 = newa 3;
+        %tmp.15 = 10;
+        %tmp.16 = dup %tmp.14;
+        %tmp.17 = aputv %tmp.16 0 %tmp.15;
+        %tmp.18 = 49;
+        %tmp.19 = dup %tmp.17;
+        %tmp.20 = aputv %tmp.19 1 %tmp.18;
+        %tmp.21 = 51;
+        %tmp.22 = dup %tmp.20;
+        %tmp.23 = aputv %tmp.22 2 %tmp.21;
+        %tmp.24 = dup %tmp.13;
+        %tmp.25 = aputv %tmp.24 1 %tmp.23;
+        %tmp.26 = newa 3;
+        %tmp.27 = 10;
+        %tmp.28 = dup %tmp.26;
+        %tmp.29 = aputv %tmp.28 0 %tmp.27;
+        %tmp.30 = 47;
+        %tmp.31 = dup %tmp.29;
+        %tmp.32 = aputv %tmp.31 1 %tmp.30;
+        %tmp.33 = 53;
+        %tmp.34 = dup %tmp.32;
+        %tmp.35 = aputv %tmp.34 2 %tmp.33;
+        %tmp.36 = dup %tmp.25;
+        %tmp.37 = aputv %tmp.36 2 %tmp.35;
+        %tmp.38 = newa 3;
+        %tmp.39 = 10;
+        %tmp.40 = dup %tmp.38;
+        %tmp.41 = aputv %tmp.40 0 %tmp.39;
+        %tmp.42 = 45;
+        %tmp.43 = dup %tmp.41;
+        %tmp.44 = aputv %tmp.43 1 %tmp.42;
+        %tmp.45 = 55;
+        %tmp.46 = dup %tmp.44;
+        %tmp.47 = aputv %tmp.46 2 %tmp.45;
+        %tmp.48 = dup %tmp.37;
+        %tmp.49 = aputv %tmp.48 3 %tmp.47;
+        %tmp.50 = newa 3;
+        %tmp.51 = 10;
+        %tmp.52 = dup %tmp.50;
+        %tmp.53 = aputv %tmp.52 0 %tmp.51;
+        %tmp.54 = 50;
+        %tmp.55 = dup %tmp.53;
+        %tmp.56 = aputv %tmp.55 1 %tmp.54;
+        %tmp.57 = 50;
+        %tmp.58 = dup %tmp.56;
+        %tmp.59 = aputv %tmp.58 2 %tmp.57;
+        %tmp.60 = dup %tmp.49;
+        %tmp.61 = aputv %tmp.60 4 %tmp.59;
+        %tmp.62 = newa 3;
+        %tmp.63 = 5;
+        %tmp.64 = dup %tmp.62;
+        %tmp.65 = aputv %tmp.64 0 %tmp.63;
+        %tmp.66 = 48;
+        %tmp.67 = dup %tmp.65;
+        %tmp.68 = aputv %tmp.67 1 %tmp.66;
+        %tmp.69 = 52;
+        %tmp.70 = dup %tmp.68;
+        %tmp.71 = aputv %tmp.70 2 %tmp.69;
+        %tmp.72 = dup %tmp.61;
+        %tmp.73 = aputv %tmp.72 5 %tmp.71;
+        %tmp.74 = newa 3;
+        %tmp.75 = 10;
+        %tmp.76 = dup %tmp.74;
+        %tmp.77 = aputv %tmp.76 0 %tmp.75;
+        %tmp.78 = 46;
+        %tmp.79 = dup %tmp.77;
+        %tmp.80 = aputv %tmp.79 1 %tmp.78;
+        %tmp.81 = 54;
+        %tmp.82 = dup %tmp.80;
+        %tmp.83 = aputv %tmp.82 2 %tmp.81;
+        %tmp.84 = dup %tmp.73;
+        %tmp.85 = aputv %tmp.84 6 %tmp.83;
+        lputv %seq.1 %tmp.85;
+        symbol [ seq %seq.1 21 12 15 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 30 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_stop" ]
+        %elapsed.2 = local;
+        symbol [ elapsed %elapsed.2 30 12 19 ];
+        %tmp.86 = lgetv %elapsedMs;
+        symbol [ elapsedMs %tmp.86 30 23 32 ];
+        symbol [ toFloat %tmp.87 30 33 40 ];
+        %tmp.87 = getv function %tmp.86 :toFloat;
+        %tmp.88 = invoke %tmp.86 %tmp.87();
+        symbol [ TEST_TIME_SCALE %tmp.90 30 45 60 ];
+        %tmp.90 = getv ? :TEST_TIME_SCALE;
+        %tmp.91 = mul %tmp.88 %tmp.90;
+        %tmp.92 = 1000.0;
+        %tmp.93 = div %tmp.91 %tmp.92;
+        lputv %elapsed.2 %tmp.93;
+        symbol [ elapsed %elapsed.2 30 12 19 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 31 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_stop" ]
+        %totalDuration.3 = local;
+        symbol [ totalDuration %totalDuration.3 31 12 25 ];
+        %tmp.94 = 0.0;
+        lputv %totalDuration.3 %tmp.94;
+        symbol [ totalDuration %totalDuration.3 31 12 25 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 32 8 ]
+        for @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_test @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_incr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_init:
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_begin" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_end" ]
+        %i.4 = local;
+        symbol [ i %i.4 32 17 18 ];
+        %tmp.95 = 0;
+        lputv %i.4 %tmp.95;
+        symbol [ i %i.4 32 17 18 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_test:
+        %tmp.96 = lgetv %i.4;
+        symbol [ i %tmp.96 32 24 25 ];
+        %tmp.97 = lgetv %seq.1;
+        symbol [ seq %tmp.97 32 28 31 ];
+        symbol [ size %tmp.98 32 32 36 ];
+        %tmp.98 = getv function %tmp.97 :size;
+        %tmp.99 = invoke %tmp.97 %tmp.98();
+        %tmp.100 = lt %tmp.96 %tmp.99;
+        bf %tmp.100 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_begin:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_45_34_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 33 12 ]
+        %tmp.101 = lgetv %totalDuration.3;
+        symbol [ totalDuration %tmp.101 33 12 25 ];
+        %tmp.102 = lgetv %seq.1;
+        symbol [ seq %tmp.102 33 29 32 ];
+        %tmp.103 = lgetv %i.4;
+        symbol [ i %tmp.103 33 33 34 ];
+        %tmp.104 = agetv %tmp.102 %tmp.103;
+        %tmp.105 = 0;
+        %tmp.106 = agetv %tmp.104 %tmp.105;
+        %tmp.107 = add %tmp.101 %tmp.106;
+        lputv %totalDuration.3 %tmp.107;
+        symbol [ totalDuration %totalDuration.3 33 12 25 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_45_34_8_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_incr:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 32 ]
+        %tmp.110 = lgetv %i.4;
+        symbol [ i %tmp.110 32 40 41 ];
+        %tmp.111 = add %tmp.110 1;
+        lputv %i.4 %tmp.111;
+        symbol [ i %i.4 32 40 41 ];
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_test;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_32_8_34_8_for_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 35 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_8_37_8_if_stmt:
+        %tmp.112 = lgetv %totalDuration.3;
+        symbol [ totalDuration %tmp.112 35 12 25 ];
+        %tmp.113 = 0.0;
+        %tmp.114 = gt %tmp.112 %tmp.113;
+        bf %tmp.114 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_8_37_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_8_37_8_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_33_37_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 36 12 ]
+        %tmp.115 = lgetv %elapsed.2;
+        symbol [ elapsed %tmp.115 36 22 29 ];
+        %tmp.116 = lgetv %totalDuration.3;
+        symbol [ totalDuration %tmp.116 36 33 46 ];
+        %tmp.117 = lgetv %elapsed.2;
+        symbol [ elapsed %tmp.117 36 50 57 ];
+        %tmp.118 = lgetv %totalDuration.3;
+        symbol [ totalDuration %tmp.118 36 60 73 ];
+        %tmp.119 = div %tmp.117 %tmp.118;
+        symbol [ toNumber %tmp.120 36 75 83 ];
+        %tmp.120 = getv function %tmp.119 :toNumber;
+        %tmp.121 = invoke %tmp.119 %tmp.120();
+        symbol [ toFloat %tmp.122 36 86 93 ];
+        %tmp.122 = getv function %tmp.121 :toFloat;
+        %tmp.123 = invoke %tmp.121 %tmp.122();
+        %tmp.124 = mul %tmp.116 %tmp.123;
+        %tmp.125 = sub %tmp.115 %tmp.124;
+        lputv %elapsed.2 %tmp.125;
+        symbol [ elapsed %elapsed.2 36 12 19 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_33_37_8_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_8_37_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_35_8_37_8_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 38 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_stop" ]
+        %t.5 = local;
+        symbol [ t %t.5 38 12 13 ];
+        %tmp.126 = 0.0;
+        lputv %t.5 %tmp.126;
+        symbol [ t %t.5 38 12 13 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 39 8 ]
+        for @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_test @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_incr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_init:
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_begin" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_end" ]
+        %i.6 = local;
+        symbol [ i %i.6 39 17 18 ];
+        %tmp.127 = 0;
+        lputv %i.6 %tmp.127;
+        symbol [ i %i.6 39 17 18 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_test:
+        %tmp.128 = lgetv %i.6;
+        symbol [ i %tmp.128 39 24 25 ];
+        %tmp.129 = lgetv %seq.1;
+        symbol [ seq %tmp.129 39 28 31 ];
+        symbol [ size %tmp.130 39 32 36 ];
+        %tmp.130 = getv function %tmp.129 :size;
+        %tmp.131 = invoke %tmp.129 %tmp.130();
+        %tmp.132 = lt %tmp.128 %tmp.131;
+        bf %tmp.132 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_begin:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_45_44_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 40 12 ]
+        %tmp.133 = lgetv %t.5;
+        symbol [ t %tmp.133 40 12 13 ];
+        %tmp.134 = lgetv %seq.1;
+        symbol [ seq %tmp.134 40 17 20 ];
+        %tmp.135 = lgetv %i.6;
+        symbol [ i %tmp.135 40 21 22 ];
+        %tmp.136 = agetv %tmp.134 %tmp.135;
+        %tmp.137 = 0;
+        %tmp.138 = agetv %tmp.136 %tmp.137;
+        %tmp.139 = add %tmp.133 %tmp.138;
+        lputv %t.5 %tmp.139;
+        symbol [ t %t.5 40 12 13 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 41 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_12_43_12_if_stmt:
+        %tmp.140 = lgetv %elapsed.2;
+        symbol [ elapsed %tmp.140 41 16 23 ];
+        %tmp.141 = lgetv %t.5;
+        symbol [ t %tmp.141 41 26 27 ];
+        %tmp.142 = lt %tmp.140 %tmp.141;
+        bf %tmp.142 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_12_43_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_12_43_12_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_29_43_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 42 16 ]
+        %tmp.143 = newa 2;
+        %tmp.144 = lgetv %seq.1;
+        symbol [ seq %tmp.144 42 24 27 ];
+        %tmp.145 = lgetv %i.6;
+        symbol [ i %tmp.145 42 28 29 ];
+        %tmp.146 = agetv %tmp.144 %tmp.145;
+        %tmp.147 = 1;
+        %tmp.148 = agetv %tmp.146 %tmp.147;
+        %tmp.149 = dup %tmp.143;
+        %tmp.150 = aputv %tmp.149 0 %tmp.148;
+        %tmp.151 = lgetv %seq.1;
+        symbol [ seq %tmp.151 42 35 38 ];
+        %tmp.152 = lgetv %i.6;
+        symbol [ i %tmp.152 42 39 40 ];
+        %tmp.153 = agetv %tmp.151 %tmp.152;
+        %tmp.154 = 2;
+        %tmp.155 = agetv %tmp.153 %tmp.154;
+        %tmp.156 = dup %tmp.150;
+        %tmp.157 = aputv %tmp.156 1 %tmp.155;
+        ret %tmp.157;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_29_43_12_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_12_43_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_41_12_43_12_if_end:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_45_44_8_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_incr:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 39 ]
+        %tmp.160 = lgetv %i.6;
+        symbol [ i %tmp.160 39 40 41 ];
+        %tmp.161 = add %tmp.160 1;
+        lputv %i.6 %tmp.161;
+        symbol [ i %i.6 39 40 41 ];
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_test;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_39_8_44_8_for_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 45 8 ]
+        %tmp.162 = newa 2;
+        %tmp.163 = lgetv %seq.1;
+        symbol [ seq %tmp.163 45 16 19 ];
+        %tmp.164 = lgetv %seq.1;
+        symbol [ seq %tmp.164 45 20 23 ];
+        symbol [ size %tmp.165 45 24 28 ];
+        %tmp.165 = getv function %tmp.164 :size;
+        %tmp.166 = invoke %tmp.164 %tmp.165();
+        %tmp.167 = 1;
+        %tmp.168 = sub %tmp.166 %tmp.167;
+        %tmp.169 = agetv %tmp.163 %tmp.168;
+        %tmp.170 = 1;
+        %tmp.171 = agetv %tmp.169 %tmp.170;
+        %tmp.172 = dup %tmp.162;
+        %tmp.173 = aputv %tmp.172 0 %tmp.171;
+        %tmp.174 = lgetv %seq.1;
+        symbol [ seq %tmp.174 45 40 43 ];
+        %tmp.175 = lgetv %seq.1;
+        symbol [ seq %tmp.175 45 44 47 ];
+        symbol [ size %tmp.176 45 48 52 ];
+        %tmp.176 = getv function %tmp.175 :size;
+        %tmp.177 = invoke %tmp.175 %tmp.176();
+        %tmp.178 = 1;
+        %tmp.179 = sub %tmp.177 %tmp.178;
+        %tmp.180 = agetv %tmp.174 %tmp.179;
+        %tmp.181 = 2;
+        %tmp.182 = agetv %tmp.180 %tmp.181;
+        %tmp.183 = dup %tmp.173;
+        %tmp.184 = aputv %tmp.183 1 %tmp.182;
+        ret %tmp.184;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_19_44_46_4_stop:
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 48; @symbol_functiondef = [debugLog,48,13,21]; @symbol_param<0> = [msg,48,22,25]; ]
+    function debugLog(msg) {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_48_27_51_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 49 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_8_49_35_if_stmt:
+        symbol [ DEBUG_MODE %tmp.2 49 13 23 ];
+        %tmp.2 = getv ? :DEBUG_MODE;
+        %tmp.3 = not %tmp.2;
+        bf %tmp.3 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_8_49_35_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_8_49_35_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_25_49_35_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 49 27 ]
+        ret ?;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_25_49_35_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_8_49_35_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_49_8_49_35_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 50 8 ]
+        symbol [ System %tmp.4 50 8 14 ];
+        %tmp.4 = getm $.Toybox.System;
+        symbol [ println %tmp.5 50 15 22 ];
+        %tmp.5 = getv function %tmp.4 :println;
+        %tmp.6 = lgetv %msg;
+        symbol [ msg %tmp.6 50 23 26 ];
+        invoke %tmp.4 %tmp.5(%tmp.6);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_48_27_51_4_stop:
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 53; @symbol_functiondef = [logSettingsIfChanged,53,13,33]; ]
+    function logSettingsIfChanged() {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_53_36_58_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 54 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_53_36_58_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_53_36_58_4_stop" ]
+        %settingsLogLine.1 = local;
+        symbol [ settingsLogLine %settingsLogLine.1 54 12 27 ];
+        symbol [ Settings %tmp.1 54 30 38 ];
+        %tmp.1 = getm $.Settings;
+        symbol [ getActiveSettingsLogLine %tmp.2 54 39 63 ];
+        %tmp.2 = getv function %tmp.1 :getActiveSettingsLogLine;
+        %tmp.3 = invoke %tmp.1 %tmp.2();
+        lputv %settingsLogLine.1 %tmp.3;
+        symbol [ settingsLogLine %settingsLogLine.1 54 12 27 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 55 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_8_55_62_if_stmt:
+        %tmp.4 = lgetv %settingsLogLine.1;
+        symbol [ settingsLogLine %tmp.4 55 12 27 ];
+        symbol [ lastSettingsLogLine %tmp.6 55 31 50 ];
+        %tmp.6 = getv ? :lastSettingsLogLine;
+        %tmp.7 = eq %tmp.4 %tmp.6;
+        bf %tmp.7 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_8_55_62_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_8_55_62_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_52_55_62_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 55 54 ]
+        ret ?;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_52_55_62_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_8_55_62_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_55_8_55_62_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 56 8 ]
+        %tmp.8 = lgetv %settingsLogLine.1;
+        symbol [ settingsLogLine %tmp.8 56 30 45 ];
+        symbol [ lastSettingsLogLine ? 56 8 27 ];
+        putv self :lastSettingsLogLine %tmp.8;
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 57 8 ]
+        %tmp.9 = self;
+        symbol [ debugLog %tmp.10 57 8 16 ];
+        %tmp.10 = getv function %tmp.9 :debugLog;
+        %tmp.11 = "[PowerBalance] ";
+        %tmp.12 = lgetv %settingsLogLine.1;
+        symbol [ settingsLogLine %tmp.12 57 37 52 ];
+        %tmp.13 = add %tmp.11 %tmp.12;
+        invoke %tmp.9 %tmp.10(%tmp.13);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_53_36_58_4_stop:
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 60; @symbol_functiondef = [onLayout,60,13,21]; @symbol_param<0> = [dc,60,22,24]; @symbol_param<0>_type<0> = [Dc,60,28,30]; ]
+    function onLayout(dc as Dc) as Void {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_60_40_63_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 61 8 ]
+        %tmp.1 = self;
+        symbol [ setLayout %tmp.2 61 8 17 ];
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        symbol [ Rez %tmp.4 61 18 21 ];
+        %tmp.4 = getv ? :Rez;
+        symbol [ Layouts %tmp.5 61 22 29 ];
+        %tmp.5 = getv %tmp.4 :Layouts;
+        symbol [ MainLayout %tmp.6 61 30 40 ];
+        %tmp.6 = getv function %tmp.5 :MainLayout;
+        %tmp.7 = lgetv %dc;
+        symbol [ dc %tmp.7 61 41 43 ];
+        %tmp.8 = invoke %tmp.5 %tmp.6(%tmp.7);
+        invoke %tmp.1 %tmp.2(%tmp.8);
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 62 8 ]
+        symbol [ View %tmp.10 62 22 26 ];
+        %tmp.10 = getv ? :View;
+        symbol [ findDrawableById %tmp.11 62 27 43 ];
+        %tmp.11 = getv function %tmp.10 :findDrawableById;
+        %tmp.12 = "balanceTop";
+        %tmp.13 = invoke %tmp.10 %tmp.11(%tmp.12);
+        %tmp.14 = as %tmp.13 Text;
+        symbol [ Text %tmp.14 62 61 65 ];
+        symbol [ fBalanceTop ? 62 8 19 ];
+        putv self :fBalanceTop %tmp.14;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_60_40_63_4_stop:
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 65; @symbol_functiondef = [initialize,65,13,23]; ]
+    function initialize() as Void {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_65_26_68_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 66 8 ]
+        symbol [ DataField %tmp.2 66 8 17 ];
+        %tmp.2 = getv ? :DataField;
+        symbol [ initialize %tmp.3 66 18 28 ];
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 67 8 ]
+        try @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_beginTry @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_endTry @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_catch @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_beginTry:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_12_67_55_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 67 14 ]
+        symbol [ AntPlus %tmp.6 67 30 37 ];
+        %tmp.6 = getm $.Toybox.AntPlus;
+        symbol [ BikePower %tmp.7 67 38 47 ];
+        %tmp.7 = getv function ? %tmp.6 :BikePower;
+        %tmp.8 = null;
+        %tmp.4 = newc %tmp.7 (%tmp.8);
+        symbol [ bikePower ? 67 14 23 ];
+        putv self :bikePower %tmp.4;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_12_67_55_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_endTry:
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_catch:
+        %tmp.9 = exception;
+        push %tmp.9;
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 67 57 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_catch" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_57_67_86_end" ]
+        %e.1 = local;
+        symbol [ e %e.1 67 63 64 ];
+        %tmp.10 = dup %tmp.9;
+        lputv %e.1 %tmp.10;
+        symbol [ e %e.1 67 63 64 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_66_67_86_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 67 68 ]
+        %tmp.11 = null;
+        symbol [ bikePower ? 67 68 77 ];
+        putv self :bikePower %tmp.11;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_66_67_86_stop:
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally;
+        pop;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_57_67_86_end:
+        try @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_catch @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_57_67_86_end @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_57_67_86_end @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally;
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally;
+        throw %tmp.9;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_finally:
+        jsrret;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_67_8_67_86_end:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_65_26_68_4_stop:
+    }
+    [ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 70; @symbol_functiondef = [onUpdate,70,13,21]; @symbol_param<0> = [dc,70,22,24]; @symbol_param<0>_type<0> = [Graphics,70,28,36]; @symbol_param<0>_type<1> = [Dc,70,37,39]; ]
+    function onUpdate(dc as Graphics.Dc) {
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 71 8 ]
+        %tmp.1 = self;
+        symbol [ logSettingsIfChanged %tmp.2 71 8 28 ];
+        %tmp.2 = getv function %tmp.1 :logSettingsIfChanged;
+        invoke %tmp.1 %tmp.2();
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 73 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %threshold.1 = local;
+        symbol [ threshold %threshold.1 73 12 21 ];
+        symbol [ Settings %tmp.3 73 24 32 ];
+        %tmp.3 = getm $.Settings;
+        symbol [ getNumber %tmp.4 73 33 42 ];
+        %tmp.4 = getv function %tmp.3 :getNumber;
+        %tmp.5 = "spb_balance_min";
+        %tmp.6 = 48;
+        %tmp.7 = invoke %tmp.3 %tmp.4(%tmp.5, %tmp.6);
+        lputv %threshold.1 %tmp.7;
+        symbol [ threshold %threshold.1 73 12 21 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 74 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %alertEnabled.2 = local;
+        symbol [ alertEnabled %alertEnabled.2 74 12 24 ];
+        symbol [ Settings %tmp.8 74 27 35 ];
+        %tmp.8 = getm $.Settings;
+        symbol [ getBool %tmp.9 74 36 43 ];
+        %tmp.9 = getv function %tmp.8 :getBool;
+        %tmp.10 = "spb_alert";
+        %tmp.11 = true;
+        %tmp.12 = invoke %tmp.8 %tmp.9(%tmp.10, %tmp.11);
+        lputv %alertEnabled.2 %tmp.12;
+        symbol [ alertEnabled %alertEnabled.2 74 12 24 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 76 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %top.3 = local;
+        symbol [ top %top.3 76 12 15 ];
+        %tmp.13 = "--/--";
+        lputv %top.3 %tmp.13;
+        symbol [ top %top.3 76 12 15 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 77 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %color.4 = local;
+        symbol [ color %color.4 77 12 17 ];
+        symbol [ Graphics %tmp.14 77 20 28 ];
+        %tmp.14 = getm $.Toybox.Graphics;
+        symbol [ COLOR_DK_GRAY %tmp.15 77 29 42 ];
+        %tmp.15 = getv %tmp.14 :COLOR_DK_GRAY;
+        lputv %color.4 %tmp.15;
+        symbol [ color %color.4 77 12 17 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 79 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %hasBalance.5 = local;
+        symbol [ hasBalance %hasBalance.5 79 12 22 ];
+        %tmp.16 = false;
+        lputv %hasBalance.5 %tmp.16;
+        symbol [ hasBalance %hasBalance.5 79 12 22 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 80 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %leftBalance.6 = local;
+        symbol [ leftBalance %leftBalance.6 80 12 23 ];
+        %tmp.17 = 0;
+        lputv %leftBalance.6 %tmp.17;
+        symbol [ leftBalance %leftBalance.6 80 12 23 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 81 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %rightBalance.7 = local;
+        symbol [ rightBalance %rightBalance.7 81 12 24 ];
+        %tmp.18 = 0;
+        lputv %rightBalance.7 %tmp.18;
+        symbol [ rightBalance %rightBalance.7 81 12 24 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 82 8 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop" ]
+        %weakSide.8 = local;
+        symbol [ weakSide %weakSide.8 82 12 20 ];
+        %tmp.19 = 0;
+        lputv %weakSide.8 %tmp.19;
+        symbol [ weakSide %weakSide.8 82 12 20 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 84 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_stmt:
+        symbol [ TEST_BALANCE_OVERRIDE %tmp.21 84 12 33 ];
+        %tmp.21 = getv ? :TEST_BALANCE_OVERRIDE;
+        bf %tmp.21 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 85 12 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_stop" ]
+        %now.9 = local;
+        symbol [ now %now.9 85 16 19 ];
+        symbol [ System %tmp.22 85 22 28 ];
+        %tmp.22 = getm $.Toybox.System;
+        symbol [ getTimer %tmp.23 85 29 37 ];
+        %tmp.23 = getv function %tmp.22 :getTimer;
+        %tmp.24 = invoke %tmp.22 %tmp.23();
+        lputv %now.9 %tmp.24;
+        symbol [ now %now.9 85 16 19 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 86 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_12_86_58_if_stmt:
+        symbol [ testStartTime %tmp.26 86 16 29 ];
+        %tmp.26 = getv ? :testStartTime;
+        %tmp.27 = 0;
+        %tmp.28 = lt %tmp.26 %tmp.27;
+        bf %tmp.28 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_12_86_58_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_12_86_58_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_35_86_58_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 86 37 ]
+        %tmp.29 = lgetv %now.9;
+        symbol [ now %tmp.29 86 53 56 ];
+        symbol [ testStartTime ? 86 37 50 ];
+        putv self :testStartTime %tmp.29;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_35_86_58_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_12_86_58_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_86_12_86_58_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 87 12 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_stop" ]
+        %synth.10 = local;
+        symbol [ synth %synth.10 87 16 21 ];
+        %tmp.30 = self;
+        symbol [ getSyntheticBalance %tmp.31 87 24 43 ];
+        %tmp.31 = getv function %tmp.30 :getSyntheticBalance;
+        %tmp.32 = lgetv %now.9;
+        symbol [ now %tmp.32 87 45 48 ];
+        symbol [ testStartTime %tmp.34 87 51 64 ];
+        %tmp.34 = getv ? :testStartTime;
+        %tmp.35 = sub %tmp.32 %tmp.34;
+        symbol [ toFloat %tmp.36 87 66 73 ];
+        %tmp.36 = getv function %tmp.35 :toFloat;
+        %tmp.37 = invoke %tmp.35 %tmp.36();
+        %tmp.38 = invoke %tmp.30 %tmp.31(%tmp.37);
+        lputv %synth.10 %tmp.38;
+        symbol [ synth %synth.10 87 16 21 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 88 12 ]
+        %tmp.39 = lgetv %synth.10;
+        symbol [ synth %tmp.39 88 26 31 ];
+        %tmp.40 = 0;
+        %tmp.41 = agetv %tmp.39 %tmp.40;
+        lputv %leftBalance.6 %tmp.41;
+        symbol [ leftBalance %leftBalance.6 88 12 23 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 89 12 ]
+        %tmp.42 = lgetv %synth.10;
+        symbol [ synth %tmp.42 89 27 32 ];
+        %tmp.43 = 1;
+        %tmp.44 = agetv %tmp.42 %tmp.43;
+        lputv %rightBalance.7 %tmp.44;
+        symbol [ rightBalance %rightBalance.7 89 12 24 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 90 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_12_90_52_if_stmt:
+        %tmp.45 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.45 90 16 27 ];
+        %tmp.46 = 0;
+        %tmp.47 = lt %tmp.45 %tmp.46;
+        bf %tmp.47 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_12_90_52_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_12_90_52_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_33_90_52_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 90 35 ]
+        %tmp.48 = 0;
+        lputv %leftBalance.6 %tmp.48;
+        symbol [ leftBalance %leftBalance.6 90 35 46 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_33_90_52_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_12_90_52_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_90_12_90_52_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 91 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_12_91_56_if_stmt:
+        %tmp.49 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.49 91 16 27 ];
+        %tmp.50 = 100;
+        %tmp.51 = gt %tmp.49 %tmp.50;
+        bf %tmp.51 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_12_91_56_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_12_91_56_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_35_91_56_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 91 37 ]
+        %tmp.52 = 100;
+        lputv %leftBalance.6 %tmp.52;
+        symbol [ leftBalance %leftBalance.6 91 37 48 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_35_91_56_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_12_91_56_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_91_12_91_56_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 92 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_12_92_54_if_stmt:
+        %tmp.53 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.53 92 16 28 ];
+        %tmp.54 = 0;
+        %tmp.55 = lt %tmp.53 %tmp.54;
+        bf %tmp.55 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_12_92_54_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_12_92_54_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_34_92_54_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 92 36 ]
+        %tmp.56 = 0;
+        lputv %rightBalance.7 %tmp.56;
+        symbol [ rightBalance %rightBalance.7 92 36 48 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_34_92_54_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_12_92_54_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_92_12_92_54_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 93 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_12_93_58_if_stmt:
+        %tmp.57 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.57 93 16 28 ];
+        %tmp.58 = 100;
+        %tmp.59 = gt %tmp.57 %tmp.58;
+        bf %tmp.59 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_12_93_58_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_12_93_58_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_36_93_58_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 93 38 ]
+        %tmp.60 = 100;
+        lputv %rightBalance.7 %tmp.60;
+        symbol [ rightBalance %rightBalance.7 93 38 50 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_36_93_58_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_12_93_58_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_93_12_93_58_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 94 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_begin:
+        %tmp.61 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.61 94 24 35 ];
+        %tmp.62 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.62 94 38 50 ];
+        %tmp.63 = lt %tmp.61 %tmp.62;
+        bf %tmp.63 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_true:
+        %tmp.64 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.64 94 54 65 ];
+        push %tmp.64;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_else_false:
+        %tmp.65 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.65 94 68 80 ];
+        push %tmp.65;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_end:
+        %tmp.66 = phi [%tmp.63 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_begin] [%tmp.64 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_true] [%tmp.65 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_else_false] [%tmp.66 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_94_23_94_68_end];
+        lputv %weakSide.8 %tmp.66;
+        symbol [ weakSide %weakSide.8 94 12 20 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 95 12 ]
+        %tmp.67 = true;
+        lputv %hasBalance.5 %tmp.67;
+        symbol [ hasBalance %hasBalance.5 95 12 22 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_35_96_8_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_else_false:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_96_15_114_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 97 12 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_96_15_114_8_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_96_15_114_8_stop" ]
+        %balanceData.11 = local;
+        symbol [ balanceData %balanceData.11 97 16 27 ];
+        %tmp.68 = null;
+        lputv %balanceData.11 %tmp.68;
+        symbol [ balanceData %balanceData.11 97 16 27 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 98 12 ]
+        try @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_beginTry @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_endTry @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_catch @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_beginTry:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_16_102_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 99 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_16_101_16_if_stmt:
+        symbol [ bikePower %tmp.70 99 20 29 ];
+        %tmp.70 = getv ? :bikePower;
+        %tmp.71 = null;
+        %tmp.72 = ne %tmp.70 %tmp.71;
+        bf %tmp.72 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_16_101_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_16_101_16_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_39_101_16_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 100 20 ]
+        symbol [ bikePower %tmp.74 100 34 43 ];
+        %tmp.74 = getv ? :bikePower;
+        %tmp.75 = as %tmp.74 { (!Null) };
+        symbol [ getPedalPowerBalance %tmp.76 100 44 64 ];
+        %tmp.76 = getv function %tmp.75 :getPedalPowerBalance;
+        %tmp.77 = invoke %tmp.75 %tmp.76();
+        lputv %balanceData.11 %tmp.77;
+        symbol [ balanceData %balanceData.11 100 20 31 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_39_101_16_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_16_101_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_99_16_101_16_if_end:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_16_102_12_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_endTry:
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_catch:
+        %tmp.78 = exception;
+        push %tmp.78;
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 102 14 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_catch" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_14_104_12_end" ]
+        %e.12 = local;
+        symbol [ e %e.12 102 20 21 ];
+        %tmp.79 = dup %tmp.78;
+        lputv %e.12 %tmp.79;
+        symbol [ e %e.12 102 20 21 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_23_104_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 103 16 ]
+        %tmp.80 = null;
+        lputv %balanceData.11 %tmp.80;
+        symbol [ balanceData %balanceData.11 103 16 27 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_23_104_12_stop:
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally;
+        pop;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_14_104_12_end:
+        try @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_catch @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_14_104_12_end @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_102_14_104_12_end @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally;
+        jsr @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally;
+        throw %tmp.78;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_finally:
+        jsrret;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_98_12_104_12_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 106 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_stmt:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_16_106_115_begin:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_16_106_72_begin:
+        %tmp.81 = lgetv %balanceData.11;
+        symbol [ balanceData %tmp.81 106 16 27 ];
+        %tmp.82 = null;
+        %tmp.83 = ne %tmp.81 %tmp.82;
+        bf %tmp.83 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_39_106_72_true:
+        %tmp.84 = lgetv %balanceData.11;
+        symbol [ balanceData %tmp.84 106 39 50 ];
+        %tmp.85 = as %tmp.84 { (!Null) };
+        symbol [ pedalPowerPercent %tmp.86 106 51 68 ];
+        %tmp.86 = getv %tmp.85 :pedalPowerPercent;
+        %tmp.87 = null;
+        %tmp.88 = ne %tmp.86 %tmp.87;
+        push %tmp.88;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_39_106_72_end:
+        %tmp.89 = phi [%tmp.83 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_16_106_72_begin] [%tmp.88 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_39_106_72_true] [%tmp.89 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_39_106_72_end];
+        bf %tmp.89 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_80_106_115_true:
+        %tmp.90 = lgetv %balanceData.11;
+        symbol [ balanceData %tmp.90 106 80 91 ];
+        %tmp.91 = as %tmp.90 { (!Null) };
+        symbol [ rightPedalIndicator %tmp.92 106 92 111 ];
+        %tmp.92 = getv %tmp.91 :rightPedalIndicator;
+        %tmp.93 = null;
+        %tmp.94 = ne %tmp.92 %tmp.93;
+        push %tmp.94;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_80_106_115_end:
+        %tmp.95 = phi [%tmp.89 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_16_106_115_begin] [%tmp.94 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_80_106_115_true] [%tmp.95 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_80_106_115_end];
+        bf %tmp.95 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 107 16 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_stop" ]
+        %pedalPowerPercent.13 = local;
+        symbol [ pedalPowerPercent %pedalPowerPercent.13 107 20 37 ];
+        %tmp.96 = lgetv %balanceData.11;
+        symbol [ balanceData %tmp.96 107 40 51 ];
+        %tmp.97 = as %tmp.96 { (!Null) };
+        symbol [ pedalPowerPercent %tmp.98 107 52 69 ];
+        %tmp.98 = getv %tmp.97 :pedalPowerPercent;
+        lputv %pedalPowerPercent.13 %tmp.98;
+        symbol [ pedalPowerPercent %pedalPowerPercent.13 107 20 37 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 108 16 ]
+        [ "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_start" "_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_stop" ]
+        %rightPedalIndicator.14 = local;
+        symbol [ rightPedalIndicator %rightPedalIndicator.14 108 20 39 ];
+        %tmp.99 = lgetv %balanceData.11;
+        symbol [ balanceData %tmp.99 108 42 53 ];
+        %tmp.100 = as %tmp.99 { (!Null) };
+        symbol [ rightPedalIndicator %tmp.101 108 54 73 ];
+        %tmp.101 = getv %tmp.100 :rightPedalIndicator;
+        lputv %rightPedalIndicator.14 %tmp.101;
+        symbol [ rightPedalIndicator %rightPedalIndicator.14 108 20 39 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 109 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_begin:
+        %tmp.102 = lgetv %rightPedalIndicator.14;
+        symbol [ rightPedalIndicator %tmp.102 109 30 49 ];
+        bf %tmp.102 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_true:
+        %tmp.103 = 100;
+        %tmp.104 = lgetv %pedalPowerPercent.13;
+        symbol [ pedalPowerPercent %tmp.104 109 59 76 ];
+        %tmp.105 = sub %tmp.103 %tmp.104;
+        push %tmp.105;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_else_false:
+        %tmp.106 = lgetv %pedalPowerPercent.13;
+        symbol [ pedalPowerPercent %tmp.106 109 80 97 ];
+        push %tmp.106;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_end:
+        %tmp.107 = phi [%tmp.102 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_begin] [%tmp.105 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_true] [%tmp.106 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_else_false] [%tmp.107 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_109_30_109_80_end];
+        lputv %leftBalance.6 %tmp.107;
+        symbol [ leftBalance %leftBalance.6 109 16 27 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 110 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_begin:
+        %tmp.108 = lgetv %rightPedalIndicator.14;
+        symbol [ rightPedalIndicator %tmp.108 110 31 50 ];
+        bf %tmp.108 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_true:
+        %tmp.109 = lgetv %pedalPowerPercent.13;
+        symbol [ pedalPowerPercent %tmp.109 110 53 70 ];
+        push %tmp.109;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_else_false:
+        %tmp.110 = 100;
+        %tmp.111 = lgetv %pedalPowerPercent.13;
+        symbol [ pedalPowerPercent %tmp.111 110 80 97 ];
+        %tmp.112 = sub %tmp.110 %tmp.111;
+        push %tmp.112;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_end:
+        %tmp.113 = phi [%tmp.108 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_begin] [%tmp.109 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_true] [%tmp.112 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_else_false] [%tmp.113 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_110_31_110_97_end];
+        lputv %rightBalance.7 %tmp.113;
+        symbol [ rightBalance %rightBalance.7 110 16 28 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 111 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_begin:
+        %tmp.114 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.114 111 28 39 ];
+        %tmp.115 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.115 111 42 54 ];
+        %tmp.116 = lt %tmp.114 %tmp.115;
+        bf %tmp.116 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_true:
+        %tmp.117 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.117 111 58 69 ];
+        push %tmp.117;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_else_false:
+        %tmp.118 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.118 111 72 84 ];
+        push %tmp.118;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_end:
+        %tmp.119 = phi [%tmp.116 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_begin] [%tmp.117 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_true] [%tmp.118 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_else_false] [%tmp.119 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_111_27_111_72_end];
+        lputv %weakSide.8 %tmp.119;
+        symbol [ weakSide %weakSide.8 111 16 24 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 112 16 ]
+        %tmp.120 = true;
+        lputv %hasBalance.5 %tmp.120;
+        symbol [ hasBalance %hasBalance.5 112 16 26 ];
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_121_113_12_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_106_12_113_12_if_end:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_96_15_114_8_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_84_8_114_8_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 116 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_stmt:
+        %tmp.121 = lgetv %hasBalance.5;
+        symbol [ hasBalance %tmp.121 116 12 22 ];
+        bf %tmp.121 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_24_131_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 117 12 ]
+        %tmp.122 = lgetv %leftBalance.6;
+        symbol [ leftBalance %tmp.122 117 18 29 ];
+        symbol [ format %tmp.123 117 30 36 ];
+        %tmp.123 = getv function %tmp.122 :format;
+        %tmp.124 = "%d";
+        %tmp.125 = invoke %tmp.122 %tmp.123(%tmp.124);
+        %tmp.126 = "/";
+        %tmp.127 = add %tmp.125 %tmp.126;
+        %tmp.128 = lgetv %rightBalance.7;
+        symbol [ rightBalance %tmp.128 117 51 63 ];
+        symbol [ format %tmp.129 117 64 70 ];
+        %tmp.129 = getv function %tmp.128 :format;
+        %tmp.130 = "%d";
+        %tmp.131 = invoke %tmp.128 %tmp.129(%tmp.130);
+        %tmp.132 = add %tmp.127 %tmp.131;
+        lputv %top.3 %tmp.132;
+        symbol [ top %top.3 117 12 15 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 118 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_begin:
+        %tmp.133 = lgetv %weakSide.8;
+        symbol [ weakSide %tmp.133 118 21 29 ];
+        %tmp.134 = lgetv %threshold.1;
+        symbol [ threshold %tmp.134 118 32 41 ];
+        %tmp.135 = lt %tmp.133 %tmp.134;
+        bf %tmp.135 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_true:
+        symbol [ Graphics %tmp.136 118 45 53 ];
+        %tmp.136 = getm $.Toybox.Graphics;
+        symbol [ COLOR_RED %tmp.137 118 54 63 ];
+        %tmp.137 = getv %tmp.136 :COLOR_RED;
+        push %tmp.137;
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_else_false:
+        symbol [ Graphics %tmp.138 118 66 74 ];
+        %tmp.138 = getm $.Toybox.Graphics;
+        symbol [ COLOR_GREEN %tmp.139 118 75 86 ];
+        %tmp.139 = getv %tmp.138 :COLOR_GREEN;
+        push %tmp.139;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_end:
+        %tmp.140 = phi [%tmp.135 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_begin] [%tmp.137 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_true] [%tmp.139 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_else_false] [%tmp.140 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_118_20_118_75_end];
+        lputv %color.4 %tmp.140;
+        symbol [ color %color.4 118 12 17 ];
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 120 12 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_stmt:
+        %tmp.141 = lgetv %weakSide.8;
+        symbol [ weakSide %tmp.141 120 16 24 ];
+        %tmp.142 = lgetv %threshold.1;
+        symbol [ threshold %tmp.142 120 27 36 ];
+        %tmp.143 = lt %tmp.141 %tmp.142;
+        bf %tmp.143 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_else_false;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_38_125_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 121 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_stmt:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_20_121_36_begin:
+        symbol [ alertActive %tmp.145 121 21 32 ];
+        %tmp.145 = getv ? :alertActive;
+        %tmp.146 = not %tmp.145;
+        bf %tmp.146 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_36_121_36_true:
+        %tmp.147 = lgetv %alertEnabled.2;
+        symbol [ alertEnabled %tmp.147 121 36 48 ];
+        push %tmp.147;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_36_121_36_end:
+        %tmp.148 = phi [%tmp.146 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_20_121_36_begin] [%tmp.147 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_36_121_36_true] [%tmp.148 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_36_121_36_end];
+        bf %tmp.148 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_50_123_16_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 122 20 ]
+        symbol [ Attention %tmp.149 122 20 29 ];
+        %tmp.149 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.150 122 30 38 ];
+        %tmp.150 = getv function %tmp.149 :playTone;
+        symbol [ Attention %tmp.151 122 39 48 ];
+        %tmp.151 = getm $.Toybox.Attention;
+        symbol [ TONE_ALARM %tmp.152 122 49 59 ];
+        %tmp.152 = getv %tmp.151 :TONE_ALARM;
+        invoke %tmp.149 %tmp.150(%tmp.152);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_50_123_16_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_121_16_123_16_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 124 16 ]
+        %tmp.153 = true;
+        symbol [ alertActive ? 124 16 27 ];
+        putv self :alertActive %tmp.153;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_38_125_12_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_else_false:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_125_19_130_12_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 126 16 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_stmt:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_20_126_35_begin:
+        symbol [ alertActive %tmp.155 126 20 31 ];
+        %tmp.155 = getv ? :alertActive;
+        bf %tmp.155 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_35_126_35_true:
+        %tmp.156 = lgetv %alertEnabled.2;
+        symbol [ alertEnabled %tmp.156 126 35 47 ];
+        push %tmp.156;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_35_126_35_end:
+        %tmp.157 = phi [%tmp.155 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_20_126_35_begin] [%tmp.156 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_35_126_35_true] [%tmp.157 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_35_126_35_end];
+        bf %tmp.157 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_49_128_16_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 127 20 ]
+        symbol [ Attention %tmp.158 127 20 29 ];
+        %tmp.158 = getm $.Toybox.Attention;
+        symbol [ playTone %tmp.159 127 30 38 ];
+        %tmp.159 = getv function %tmp.158 :playTone;
+        symbol [ Attention %tmp.160 127 39 48 ];
+        %tmp.160 = getm $.Toybox.Attention;
+        symbol [ TONE_RESET %tmp.161 127 49 59 ];
+        %tmp.161 = getv %tmp.160 :TONE_RESET;
+        invoke %tmp.158 %tmp.159(%tmp.161);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_49_128_16_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_126_16_128_16_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 129 16 ]
+        %tmp.162 = false;
+        symbol [ alertActive ? 129 16 27 ];
+        putv self :alertActive %tmp.162;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_125_19_130_12_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_120_12_130_12_if_end:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_24_131_8_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_else_false:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_131_15_133_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 132 12 ]
+        %tmp.163 = false;
+        symbol [ alertActive ? 132 12 23 ];
+        putv self :alertActive %tmp.163;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_131_15_133_8_stop:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_116_8_133_8_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 135 8 ]
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_8_138_8_if_stmt:
+        symbol [ fBalanceTop %tmp.165 135 12 23 ];
+        %tmp.165 = getv ? :fBalanceTop;
+        %tmp.166 = null;
+        %tmp.167 = ne %tmp.165 %tmp.166;
+        bf %tmp.167 @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_8_138_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_8_138_8_if_true:
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_33_138_8_start:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 136 12 ]
+        symbol [ fBalanceTop %tmp.169 136 12 23 ];
+        %tmp.169 = getv ? :fBalanceTop;
+        %tmp.170 = as %tmp.169 { (!Null) };
+        symbol [ setColor %tmp.171 136 24 32 ];
+        %tmp.171 = getv function %tmp.170 :setColor;
+        %tmp.172 = lgetv %color.4;
+        symbol [ color %tmp.172 136 33 38 ];
+        invoke %tmp.170 %tmp.171(%tmp.172);
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 137 12 ]
+        symbol [ fBalanceTop %tmp.174 137 12 23 ];
+        %tmp.174 = getv ? :fBalanceTop;
+        symbol [ setText %tmp.175 137 24 31 ];
+        %tmp.175 = getv function %tmp.174 :setText;
+        %tmp.176 = lgetv %top.3;
+        symbol [ top %tmp.176 137 32 35 ];
+        invoke %tmp.174 %tmp.175(%tmp.176);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_33_138_8_stop:
+        goto @_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_8_138_8_if_end;
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_135_8_138_8_if_end:
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 140 8 ]
+        %tmp.177 = self;
+        symbol [ debugLog %tmp.178 140 8 16 ];
+        %tmp.178 = getv function %tmp.177 :debugLog;
+        %tmp.179 = "[PowerBalance] balance=";
+        %tmp.180 = lgetv %top.3;
+        symbol [ top %tmp.180 140 45 48 ];
+        %tmp.181 = add %tmp.179 %tmp.180;
+        %tmp.182 = " weak=";
+        %tmp.183 = add %tmp.181 %tmp.182;
+        %tmp.184 = lgetv %weakSide.8;
+        symbol [ weakSide %tmp.184 140 62 70 ];
+        %tmp.185 = add %tmp.183 %tmp.184;
+        %tmp.186 = " threshold=";
+        %tmp.187 = add %tmp.185 %tmp.186;
+        %tmp.188 = lgetv %threshold.1;
+        symbol [ threshold %tmp.188 140 89 98 ];
+        %tmp.189 = add %tmp.187 %tmp.188;
+        %tmp.190 = " alert=";
+        %tmp.191 = add %tmp.189 %tmp.190;
+        symbol [ alertActive %tmp.193 140 113 124 ];
+        %tmp.193 = getv ? :alertActive;
+        %tmp.194 = add %tmp.191 %tmp.193;
+        invoke %tmp.177 %tmp.178(%tmp.194);
+[ "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc" 142 8 ]
+        symbol [ View %tmp.196 142 8 12 ];
+        %tmp.196 = getv ? :View;
+        symbol [ onUpdate %tmp.197 142 13 21 ];
+        %tmp.197 = getv function %tmp.196 :onUpdate;
+        %tmp.198 = lgetv %dc;
+        symbol [ dc %tmp.198 142 22 24 ];
+        invoke %tmp.196 %tmp.197(%tmp.198);
+_Users_erwinrademakers_workspace_SmartTrainingAlerts_PowerBalance_source_PowerBalanceView_mc_70_41_143_4_stop:
+    }
+}
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source/PowerBalanceView.mc"; @line = 1; ]
+<init> {
+}

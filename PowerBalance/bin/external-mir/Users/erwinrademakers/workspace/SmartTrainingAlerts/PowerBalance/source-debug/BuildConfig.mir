@@ -1,0 +1,9 @@
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source-debug/BuildConfig.mc"; @line = 2; @position = 6; @symbol_constdef = [DEBUG_MODE,2,6,16]; ]
+const DEBUG_MODE = true;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source-debug/BuildConfig.mc"; @line = 3; @position = 6; @symbol_constdef = [TEST_BALANCE_OVERRIDE,3,6,27]; ]
+const TEST_BALANCE_OVERRIDE = true;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source-debug/BuildConfig.mc"; @line = 4; @position = 6; @symbol_constdef = [TEST_TIME_SCALE,4,6,21]; ]
+const TEST_TIME_SCALE = 10.0;
+[ @file = "/Users/erwinrademakers/workspace/SmartTrainingAlerts/PowerBalance/source-debug/BuildConfig.mc"; @line = 2; ]
+<init> {
+}
